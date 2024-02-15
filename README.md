@@ -5,10 +5,10 @@ na Universidade do Minho.
 
 ## ALUNO
 
-**nome:** Joao Carvalho
+**Nome:** João Carvalho
 
 **Numero:** A94015
 
-**Email:** joaodaniel200116@gmail.com
+**Email:** a94015@alunos.uminho.pt
 
 **Fotografia:** ![Minha foto](myfoto.png)
