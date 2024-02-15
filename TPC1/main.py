@@ -54,10 +54,6 @@ for age in range(idade_minima, idade_maxima+1, 5):
     
     sum=1
 
-    
-
-
-
 modalidades = sorted(modalidades)
 print(f"modalidades:{modalidades}")
 
@@ -69,5 +65,3 @@ print(f"inaptos:{percentagem_inaptos}%")
 
 for grupo_idades, quantos in grupo_idades.items():
     print(f"{grupo_idades}: {quantos} atletas")
-
-print(total)
