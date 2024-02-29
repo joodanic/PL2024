@@ -2,7 +2,7 @@
 
 ## Resumo
 
-Para este trabalho foi-nos proposto implementar um somador ON/OFF que soma todas as sequencias de digitos num texto, no meu caso o somador comeca a ON, com base nos seguintes criterios:
+Para este trabalho foi-nos proposto implementar um somador ON/OFF que soma todas as sequências de dígitos num texto, no meu caso o somador começa a ON, com base nos seguintes critérios:
 
 1. Pretende-se um programa que some todas as sequências de dígitos que encontre num texto;
 2. Sempre que encontrar a string “Off” em qualquer combinação de maiúsculas e minúsculas, esse comportamento é desligado;
