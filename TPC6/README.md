@@ -33,7 +33,7 @@ Comandos como o seguinte:
 
 ## Regras de Produção:
 
-- p1. `P -> D P | ε`
+- p1. `P -> A P | ε`
 - p2. `A -> var = E | ? var | ! E`
 - p3. `E -> T | + T E | - T E`
 - p4. `T -> F | * F T | / F T`
