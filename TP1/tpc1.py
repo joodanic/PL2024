@@ -27,4 +27,4 @@ def rec(l):
             i=i+1
     print(res)
 
-rec("Dia 8 de Fevereiro de 2025 off = vou fazer 18 anos, on e vou realizar 3 projetos")
+rec("Hoje, 7 de Fevereiro de 2025, o professor de Processamento de Linguagens deu-nos este trabalho para fazer.= E deu-nos 7= dias para o fazer... Cada trabalho destes vale 0.25 valores da nota final!")
