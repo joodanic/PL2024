@@ -3,15 +3,18 @@
 # João Carvalho, A94015  
 
 ## Resumo
-Construir um analisador lexico para interpretar comandos de uma linguagem de query. O analisador deve ser capaz de processar comandos como o seguinte:
-- `LISTAR`
-- `MOEDA 1e`
-- `SELECIONAR A1`
-- `SAIR`
+Foi feito um analisador léxico com o objetivo de processar consultas SPARQL simples.
 
+Para a realização desta tarefa, o programa:
+
+Reconhece palavras-chave como SELECT, WHERE e LIMIT de forma case-insensitive;
+
+Identifica variáveis SPARQL (?var), literais ("texto"@en) e identificadores (dbo:MusicalArtist);
+
+Captura e ignora comentários iniciados por #;
+
+Trata corretamente a pontuação, como . e {};
 
 ## Resultado
 
-O analisador lexico pode ser encontrado em [GitHub](https://github.com/joodanic/PL2024/blob/main/TP5/main.py).  
-
-**Resultado:** ![Resultado](resultadoTPC5.png)
+O analisador lexico pode ser encontrado em [GitHub](https://github.com/joodanic/PL2024/blob/main/TP4/bd_analex.py).
