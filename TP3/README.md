@@ -21,7 +21,7 @@ De forma a conseguir realizar esta tarefa, foi necessário ler o *MarkDown* e de
 
 ## Resultado
 
-O Script de conversao pode ser encontrado em [GitHub](https://github.com/joodanic/PL2024/blob/main/TP2/main.py).
+O Script de conversao pode ser encontrado em [GitHub](https://github.com/joodanic/PL2024/blob/main/TP3/main.py).
 
 **Resultado:** ![Resultado](resultado_TPC3.png)
 
