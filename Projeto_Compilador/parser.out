@@ -1,0 +1,3618 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> PROGRAM IDENTIFIER SEMICOLON function_decls block DOT
+Rule 2     block -> var_decls BEGIN stmt_list END
+Rule 3     var_decls -> VAR var_decl_list
+Rule 4     var_decls -> empty
+Rule 5     var_decl_list -> var_decl_list var_decl
+Rule 6     var_decl_list -> var_decl
+Rule 7     var_decl -> id_list COLON type SEMICOLON
+Rule 8     id_list -> id_list COMMA IDENTIFIER
+Rule 9     id_list -> IDENTIFIER
+Rule 10    type -> INTEGER
+Rule 11    type -> BOOLEAN
+Rule 12    type -> STRING_TYPE
+Rule 13    type -> array_type
+Rule 14    array_type -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF simple_type
+Rule 15    simple_type -> INTEGER
+Rule 16    simple_type -> BOOLEAN
+Rule 17    simple_type -> STRING_TYPE
+Rule 18    function_decls -> function_decls function_decl
+Rule 19    function_decls -> empty
+Rule 20    function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN SEMICOLON block SEMICOLON
+Rule 21    function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON type SEMICOLON block SEMICOLON
+Rule 22    param_list -> param_list SEMICOLON param
+Rule 23    param_list -> param
+Rule 24    param_list -> empty
+Rule 25    param -> id_list COLON type
+Rule 26    stmt_list -> stmt_list SEMICOLON stmt
+Rule 27    stmt_list -> stmt_list SEMICOLON
+Rule 28    stmt_list -> stmt
+Rule 29    stmt_list -> empty
+Rule 30    stmt -> assign_stmt
+Rule 31    stmt -> if_stmt
+Rule 32    stmt -> while_stmt
+Rule 33    stmt -> for_stmt
+Rule 34    stmt -> writeln_stmt
+Rule 35    stmt -> readln_stmt
+Rule 36    stmt -> write_stmt
+Rule 37    stmt -> block_stmt
+Rule 38    stmt -> func_call
+Rule 39    assign_stmt -> var_ref ASSIGN logic_expr
+Rule 40    var_ref -> IDENTIFIER
+Rule 41    var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET
+Rule 42    if_stmt -> IF logic_expr THEN stmt
+Rule 43    if_stmt -> IF logic_expr THEN stmt ELSE stmt
+Rule 44    while_stmt -> WHILE logic_expr DO stmt
+Rule 45    for_stmt -> FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+Rule 46    for_stmt -> FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+Rule 47    write_stmt -> WRITE LPAREN expr_list RPAREN
+Rule 48    writeln_stmt -> WRITELN LPAREN expr_list RPAREN
+Rule 49    writeln_stmt -> WRITELN
+Rule 50    readln_stmt -> READLN LPAREN var_ref RPAREN
+Rule 51    block_stmt -> BEGIN stmt_list END
+Rule 52    func_call -> IDENTIFIER LPAREN expr_list RPAREN
+Rule 53    expr_list -> expr_list COMMA logic_expr
+Rule 54    expr_list -> logic_expr
+Rule 55    expr_list -> empty
+Rule 56    logic_expr -> logic_expr AND rel_expr
+Rule 57    logic_expr -> logic_expr OR rel_expr
+Rule 58    logic_expr -> NOT rel_expr
+Rule 59    logic_expr -> rel_expr
+Rule 60    rel_expr -> rel_expr EQ expr
+Rule 61    rel_expr -> rel_expr NE expr
+Rule 62    rel_expr -> rel_expr LT expr
+Rule 63    rel_expr -> rel_expr GT expr
+Rule 64    rel_expr -> rel_expr LE expr
+Rule 65    rel_expr -> rel_expr GE expr
+Rule 66    rel_expr -> expr
+Rule 67    expr -> expr PLUS term
+Rule 68    expr -> expr MINUS term
+Rule 69    expr -> term
+Rule 70    term -> term TIMES factor
+Rule 71    term -> term DIVIDE factor
+Rule 72    term -> term MOD factor
+Rule 73    term -> factor
+Rule 74    factor -> LENGTH LPAREN expr RPAREN
+Rule 75    factor -> primary
+Rule 76    primary -> NUMBER
+Rule 77    primary -> STRING
+Rule 78    primary -> BOOLEAN_LITERAL
+Rule 79    primary -> var_ref
+Rule 80    primary -> func_call
+Rule 81    primary -> LPAREN logic_expr RPAREN
+Rule 82    empty -> <empty>
+
+Terminals, with rules where they appear
+
+AND                  : 56
+ARRAY                : 14
+ASSIGN               : 39 45 46
+BEGIN                : 2 51
+BOOLEAN              : 11 16
+BOOLEAN_LITERAL      : 78
+COLON                : 7 21 25
+COMMA                : 8 53
+DIVIDE               : 71
+DO                   : 44 45 46
+DOT                  : 1
+DOWNTO               : 46
+ELSE                 : 43
+END                  : 2 51
+EQ                   : 60
+FOR                  : 45 46
+FUNCTION             : 20 21
+GE                   : 65
+GT                   : 63
+IDENTIFIER           : 1 8 9 20 21 40 41 45 46 52
+IF                   : 42 43
+INTEGER              : 10 15
+LBRACKET             : 14 41
+LE                   : 64
+LENGTH               : 74
+LPAREN               : 20 21 47 48 50 52 74 81
+LT                   : 62
+MINUS                : 68
+MOD                  : 72
+NE                   : 61
+NOT                  : 58
+NUMBER               : 14 14 76
+OF                   : 14
+OR                   : 57
+PLUS                 : 67
+PROGRAM              : 1
+RANGE                : 14
+RBRACKET             : 14 41
+READLN               : 50
+RPAREN               : 20 21 47 48 50 52 74 81
+SEMICOLON            : 1 7 20 20 21 21 22 26 27
+STRING               : 77
+STRING_TYPE          : 12 17
+THEN                 : 42 43
+TIMES                : 70
+TO                   : 45
+VAR                  : 3
+WHILE                : 44
+WRITE                : 47
+WRITELN              : 48 49
+error                : 
+
+Nonterminals, with rules where they appear
+
+array_type           : 13
+assign_stmt          : 30
+block                : 1 20 21
+block_stmt           : 37
+empty                : 4 19 24 29 55
+expr                 : 60 61 62 63 64 65 66 67 68 74
+expr_list            : 47 48 52 53
+factor               : 70 71 72 73
+for_stmt             : 33
+func_call            : 38 80
+function_decl        : 18
+function_decls       : 1 18
+id_list              : 7 8 25
+if_stmt              : 31
+logic_expr           : 39 41 42 43 44 45 45 46 46 53 54 56 57 81
+param                : 22 23
+param_list           : 20 21 22
+primary              : 75
+program              : 0
+readln_stmt          : 35
+rel_expr             : 56 57 58 59 60 61 62 63 64 65
+simple_type          : 14
+stmt                 : 26 28 42 43 43 44 45 46
+stmt_list            : 2 26 27 51
+term                 : 67 68 69 70 71 72
+type                 : 7 21 25
+var_decl             : 5 6
+var_decl_list        : 3 5
+var_decls            : 2
+var_ref              : 39 50 79
+while_stmt           : 32
+write_stmt           : 36
+writeln_stmt         : 34
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . PROGRAM IDENTIFIER SEMICOLON function_decls block DOT
+
+    PROGRAM         shift and go to state 2
+
+    program                        shift and go to state 1
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> PROGRAM . IDENTIFIER SEMICOLON function_decls block DOT
+
+    IDENTIFIER      shift and go to state 3
+
+
+state 3
+
+    (1) program -> PROGRAM IDENTIFIER . SEMICOLON function_decls block DOT
+
+    SEMICOLON       shift and go to state 4
+
+
+state 4
+
+    (1) program -> PROGRAM IDENTIFIER SEMICOLON . function_decls block DOT
+    (18) function_decls -> . function_decls function_decl
+    (19) function_decls -> . empty
+    (82) empty -> .
+
+    FUNCTION        reduce using rule 82 (empty -> .)
+    VAR             reduce using rule 82 (empty -> .)
+    BEGIN           reduce using rule 82 (empty -> .)
+
+    function_decls                 shift and go to state 5
+    empty                          shift and go to state 6
+
+state 5
+
+    (1) program -> PROGRAM IDENTIFIER SEMICOLON function_decls . block DOT
+    (18) function_decls -> function_decls . function_decl
+    (2) block -> . var_decls BEGIN stmt_list END
+    (20) function_decl -> . FUNCTION IDENTIFIER LPAREN param_list RPAREN SEMICOLON block SEMICOLON
+    (21) function_decl -> . FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON type SEMICOLON block SEMICOLON
+    (3) var_decls -> . VAR var_decl_list
+    (4) var_decls -> . empty
+    (82) empty -> .
+
+    FUNCTION        shift and go to state 10
+    VAR             shift and go to state 11
+    BEGIN           reduce using rule 82 (empty -> .)
+
+    block                          shift and go to state 7
+    function_decl                  shift and go to state 8
+    var_decls                      shift and go to state 9
+    empty                          shift and go to state 12
+
+state 6
+
+    (19) function_decls -> empty .
+
+    FUNCTION        reduce using rule 19 (function_decls -> empty .)
+    VAR             reduce using rule 19 (function_decls -> empty .)
+    BEGIN           reduce using rule 19 (function_decls -> empty .)
+
+
+state 7
+
+    (1) program -> PROGRAM IDENTIFIER SEMICOLON function_decls block . DOT
+
+    DOT             shift and go to state 13
+
+
+state 8
+
+    (18) function_decls -> function_decls function_decl .
+
+    FUNCTION        reduce using rule 18 (function_decls -> function_decls function_decl .)
+    VAR             reduce using rule 18 (function_decls -> function_decls function_decl .)
+    BEGIN           reduce using rule 18 (function_decls -> function_decls function_decl .)
+
+
+state 9
+
+    (2) block -> var_decls . BEGIN stmt_list END
+
+    BEGIN           shift and go to state 14
+
+
+state 10
+
+    (20) function_decl -> FUNCTION . IDENTIFIER LPAREN param_list RPAREN SEMICOLON block SEMICOLON
+    (21) function_decl -> FUNCTION . IDENTIFIER LPAREN param_list RPAREN COLON type SEMICOLON block SEMICOLON
+
+    IDENTIFIER      shift and go to state 15
+
+
+state 11
+
+    (3) var_decls -> VAR . var_decl_list
+    (5) var_decl_list -> . var_decl_list var_decl
+    (6) var_decl_list -> . var_decl
+    (7) var_decl -> . id_list COLON type SEMICOLON
+    (8) id_list -> . id_list COMMA IDENTIFIER
+    (9) id_list -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 19
+
+    var_decl_list                  shift and go to state 16
+    var_decl                       shift and go to state 17
+    id_list                        shift and go to state 18
+
+state 12
+
+    (4) var_decls -> empty .
+
+    BEGIN           reduce using rule 4 (var_decls -> empty .)
+
+
+state 13
+
+    (1) program -> PROGRAM IDENTIFIER SEMICOLON function_decls block DOT .
+
+    $end            reduce using rule 1 (program -> PROGRAM IDENTIFIER SEMICOLON function_decls block DOT .)
+
+
+state 14
+
+    (2) block -> var_decls BEGIN . stmt_list END
+    (26) stmt_list -> . stmt_list SEMICOLON stmt
+    (27) stmt_list -> . stmt_list SEMICOLON
+    (28) stmt_list -> . stmt
+    (29) stmt_list -> . empty
+    (30) stmt -> . assign_stmt
+    (31) stmt -> . if_stmt
+    (32) stmt -> . while_stmt
+    (33) stmt -> . for_stmt
+    (34) stmt -> . writeln_stmt
+    (35) stmt -> . readln_stmt
+    (36) stmt -> . write_stmt
+    (37) stmt -> . block_stmt
+    (38) stmt -> . func_call
+    (82) empty -> .
+    (39) assign_stmt -> . var_ref ASSIGN logic_expr
+    (42) if_stmt -> . IF logic_expr THEN stmt
+    (43) if_stmt -> . IF logic_expr THEN stmt ELSE stmt
+    (44) while_stmt -> . WHILE logic_expr DO stmt
+    (45) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+    (48) writeln_stmt -> . WRITELN LPAREN expr_list RPAREN
+    (49) writeln_stmt -> . WRITELN
+    (50) readln_stmt -> . READLN LPAREN var_ref RPAREN
+    (47) write_stmt -> . WRITE LPAREN expr_list RPAREN
+    (51) block_stmt -> . BEGIN stmt_list END
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+
+    END             reduce using rule 82 (empty -> .)
+    SEMICOLON       reduce using rule 82 (empty -> .)
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+    WRITELN         shift and go to state 38
+    READLN          shift and go to state 39
+    WRITE           shift and go to state 40
+    BEGIN           shift and go to state 20
+    IDENTIFIER      shift and go to state 37
+
+    stmt_list                      shift and go to state 21
+    stmt                           shift and go to state 22
+    empty                          shift and go to state 23
+    assign_stmt                    shift and go to state 24
+    if_stmt                        shift and go to state 25
+    while_stmt                     shift and go to state 26
+    for_stmt                       shift and go to state 27
+    writeln_stmt                   shift and go to state 28
+    readln_stmt                    shift and go to state 29
+    write_stmt                     shift and go to state 30
+    block_stmt                     shift and go to state 31
+    func_call                      shift and go to state 32
+    var_ref                        shift and go to state 33
+
+state 15
+
+    (20) function_decl -> FUNCTION IDENTIFIER . LPAREN param_list RPAREN SEMICOLON block SEMICOLON
+    (21) function_decl -> FUNCTION IDENTIFIER . LPAREN param_list RPAREN COLON type SEMICOLON block SEMICOLON
+
+    LPAREN          shift and go to state 41
+
+
+state 16
+
+    (3) var_decls -> VAR var_decl_list .
+    (5) var_decl_list -> var_decl_list . var_decl
+    (7) var_decl -> . id_list COLON type SEMICOLON
+    (8) id_list -> . id_list COMMA IDENTIFIER
+    (9) id_list -> . IDENTIFIER
+
+    BEGIN           reduce using rule 3 (var_decls -> VAR var_decl_list .)
+    IDENTIFIER      shift and go to state 19
+
+    var_decl                       shift and go to state 42
+    id_list                        shift and go to state 18
+
+state 17
+
+    (6) var_decl_list -> var_decl .
+
+    IDENTIFIER      reduce using rule 6 (var_decl_list -> var_decl .)
+    BEGIN           reduce using rule 6 (var_decl_list -> var_decl .)
+
+
+state 18
+
+    (7) var_decl -> id_list . COLON type SEMICOLON
+    (8) id_list -> id_list . COMMA IDENTIFIER
+
+    COLON           shift and go to state 43
+    COMMA           shift and go to state 44
+
+
+state 19
+
+    (9) id_list -> IDENTIFIER .
+
+    COLON           reduce using rule 9 (id_list -> IDENTIFIER .)
+    COMMA           reduce using rule 9 (id_list -> IDENTIFIER .)
+
+
+state 20
+
+    (51) block_stmt -> BEGIN . stmt_list END
+    (26) stmt_list -> . stmt_list SEMICOLON stmt
+    (27) stmt_list -> . stmt_list SEMICOLON
+    (28) stmt_list -> . stmt
+    (29) stmt_list -> . empty
+    (30) stmt -> . assign_stmt
+    (31) stmt -> . if_stmt
+    (32) stmt -> . while_stmt
+    (33) stmt -> . for_stmt
+    (34) stmt -> . writeln_stmt
+    (35) stmt -> . readln_stmt
+    (36) stmt -> . write_stmt
+    (37) stmt -> . block_stmt
+    (38) stmt -> . func_call
+    (82) empty -> .
+    (39) assign_stmt -> . var_ref ASSIGN logic_expr
+    (42) if_stmt -> . IF logic_expr THEN stmt
+    (43) if_stmt -> . IF logic_expr THEN stmt ELSE stmt
+    (44) while_stmt -> . WHILE logic_expr DO stmt
+    (45) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+    (48) writeln_stmt -> . WRITELN LPAREN expr_list RPAREN
+    (49) writeln_stmt -> . WRITELN
+    (50) readln_stmt -> . READLN LPAREN var_ref RPAREN
+    (47) write_stmt -> . WRITE LPAREN expr_list RPAREN
+    (51) block_stmt -> . BEGIN stmt_list END
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+
+    END             reduce using rule 82 (empty -> .)
+    SEMICOLON       reduce using rule 82 (empty -> .)
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+    WRITELN         shift and go to state 38
+    READLN          shift and go to state 39
+    WRITE           shift and go to state 40
+    BEGIN           shift and go to state 20
+    IDENTIFIER      shift and go to state 37
+
+    stmt_list                      shift and go to state 45
+    stmt                           shift and go to state 22
+    empty                          shift and go to state 23
+    assign_stmt                    shift and go to state 24
+    if_stmt                        shift and go to state 25
+    while_stmt                     shift and go to state 26
+    for_stmt                       shift and go to state 27
+    writeln_stmt                   shift and go to state 28
+    readln_stmt                    shift and go to state 29
+    write_stmt                     shift and go to state 30
+    block_stmt                     shift and go to state 31
+    func_call                      shift and go to state 32
+    var_ref                        shift and go to state 33
+
+state 21
+
+    (2) block -> var_decls BEGIN stmt_list . END
+    (26) stmt_list -> stmt_list . SEMICOLON stmt
+    (27) stmt_list -> stmt_list . SEMICOLON
+
+    END             shift and go to state 46
+    SEMICOLON       shift and go to state 47
+
+
+state 22
+
+    (28) stmt_list -> stmt .
+
+    END             reduce using rule 28 (stmt_list -> stmt .)
+    SEMICOLON       reduce using rule 28 (stmt_list -> stmt .)
+
+
+state 23
+
+    (29) stmt_list -> empty .
+
+    END             reduce using rule 29 (stmt_list -> empty .)
+    SEMICOLON       reduce using rule 29 (stmt_list -> empty .)
+
+
+state 24
+
+    (30) stmt -> assign_stmt .
+
+    END             reduce using rule 30 (stmt -> assign_stmt .)
+    SEMICOLON       reduce using rule 30 (stmt -> assign_stmt .)
+    ELSE            reduce using rule 30 (stmt -> assign_stmt .)
+
+
+state 25
+
+    (31) stmt -> if_stmt .
+
+    END             reduce using rule 31 (stmt -> if_stmt .)
+    SEMICOLON       reduce using rule 31 (stmt -> if_stmt .)
+    ELSE            reduce using rule 31 (stmt -> if_stmt .)
+
+
+state 26
+
+    (32) stmt -> while_stmt .
+
+    END             reduce using rule 32 (stmt -> while_stmt .)
+    SEMICOLON       reduce using rule 32 (stmt -> while_stmt .)
+    ELSE            reduce using rule 32 (stmt -> while_stmt .)
+
+
+state 27
+
+    (33) stmt -> for_stmt .
+
+    END             reduce using rule 33 (stmt -> for_stmt .)
+    SEMICOLON       reduce using rule 33 (stmt -> for_stmt .)
+    ELSE            reduce using rule 33 (stmt -> for_stmt .)
+
+
+state 28
+
+    (34) stmt -> writeln_stmt .
+
+    END             reduce using rule 34 (stmt -> writeln_stmt .)
+    SEMICOLON       reduce using rule 34 (stmt -> writeln_stmt .)
+    ELSE            reduce using rule 34 (stmt -> writeln_stmt .)
+
+
+state 29
+
+    (35) stmt -> readln_stmt .
+
+    END             reduce using rule 35 (stmt -> readln_stmt .)
+    SEMICOLON       reduce using rule 35 (stmt -> readln_stmt .)
+    ELSE            reduce using rule 35 (stmt -> readln_stmt .)
+
+
+state 30
+
+    (36) stmt -> write_stmt .
+
+    END             reduce using rule 36 (stmt -> write_stmt .)
+    SEMICOLON       reduce using rule 36 (stmt -> write_stmt .)
+    ELSE            reduce using rule 36 (stmt -> write_stmt .)
+
+
+state 31
+
+    (37) stmt -> block_stmt .
+
+    END             reduce using rule 37 (stmt -> block_stmt .)
+    SEMICOLON       reduce using rule 37 (stmt -> block_stmt .)
+    ELSE            reduce using rule 37 (stmt -> block_stmt .)
+
+
+state 32
+
+    (38) stmt -> func_call .
+
+    END             reduce using rule 38 (stmt -> func_call .)
+    SEMICOLON       reduce using rule 38 (stmt -> func_call .)
+    ELSE            reduce using rule 38 (stmt -> func_call .)
+
+
+state 33
+
+    (39) assign_stmt -> var_ref . ASSIGN logic_expr
+
+    ASSIGN          shift and go to state 48
+
+
+state 34
+
+    (42) if_stmt -> IF . logic_expr THEN stmt
+    (43) if_stmt -> IF . logic_expr THEN stmt ELSE stmt
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    logic_expr                     shift and go to state 49
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 35
+
+    (44) while_stmt -> WHILE . logic_expr DO stmt
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    logic_expr                     shift and go to state 64
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 36
+
+    (45) for_stmt -> FOR . IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> FOR . IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+
+    IDENTIFIER      shift and go to state 65
+
+
+state 37
+
+    (52) func_call -> IDENTIFIER . LPAREN expr_list RPAREN
+    (40) var_ref -> IDENTIFIER .
+    (41) var_ref -> IDENTIFIER . LBRACKET logic_expr RBRACKET
+
+    LPAREN          shift and go to state 66
+    ASSIGN          reduce using rule 40 (var_ref -> IDENTIFIER .)
+    LBRACKET        shift and go to state 67
+
+
+state 38
+
+    (48) writeln_stmt -> WRITELN . LPAREN expr_list RPAREN
+    (49) writeln_stmt -> WRITELN .
+
+    LPAREN          shift and go to state 68
+    END             reduce using rule 49 (writeln_stmt -> WRITELN .)
+    SEMICOLON       reduce using rule 49 (writeln_stmt -> WRITELN .)
+    ELSE            reduce using rule 49 (writeln_stmt -> WRITELN .)
+
+
+state 39
+
+    (50) readln_stmt -> READLN . LPAREN var_ref RPAREN
+
+    LPAREN          shift and go to state 69
+
+
+state 40
+
+    (47) write_stmt -> WRITE . LPAREN expr_list RPAREN
+
+    LPAREN          shift and go to state 70
+
+
+state 41
+
+    (20) function_decl -> FUNCTION IDENTIFIER LPAREN . param_list RPAREN SEMICOLON block SEMICOLON
+    (21) function_decl -> FUNCTION IDENTIFIER LPAREN . param_list RPAREN COLON type SEMICOLON block SEMICOLON
+    (22) param_list -> . param_list SEMICOLON param
+    (23) param_list -> . param
+    (24) param_list -> . empty
+    (25) param -> . id_list COLON type
+    (82) empty -> .
+    (8) id_list -> . id_list COMMA IDENTIFIER
+    (9) id_list -> . IDENTIFIER
+
+    RPAREN          reduce using rule 82 (empty -> .)
+    SEMICOLON       reduce using rule 82 (empty -> .)
+    IDENTIFIER      shift and go to state 19
+
+    param_list                     shift and go to state 71
+    param                          shift and go to state 72
+    empty                          shift and go to state 73
+    id_list                        shift and go to state 74
+
+state 42
+
+    (5) var_decl_list -> var_decl_list var_decl .
+
+    IDENTIFIER      reduce using rule 5 (var_decl_list -> var_decl_list var_decl .)
+    BEGIN           reduce using rule 5 (var_decl_list -> var_decl_list var_decl .)
+
+
+state 43
+
+    (7) var_decl -> id_list COLON . type SEMICOLON
+    (10) type -> . INTEGER
+    (11) type -> . BOOLEAN
+    (12) type -> . STRING_TYPE
+    (13) type -> . array_type
+    (14) array_type -> . ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF simple_type
+
+    INTEGER         shift and go to state 76
+    BOOLEAN         shift and go to state 77
+    STRING_TYPE     shift and go to state 78
+    ARRAY           shift and go to state 80
+
+    type                           shift and go to state 75
+    array_type                     shift and go to state 79
+
+state 44
+
+    (8) id_list -> id_list COMMA . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 81
+
+
+state 45
+
+    (51) block_stmt -> BEGIN stmt_list . END
+    (26) stmt_list -> stmt_list . SEMICOLON stmt
+    (27) stmt_list -> stmt_list . SEMICOLON
+
+    END             shift and go to state 82
+    SEMICOLON       shift and go to state 47
+
+
+state 46
+
+    (2) block -> var_decls BEGIN stmt_list END .
+
+    DOT             reduce using rule 2 (block -> var_decls BEGIN stmt_list END .)
+    SEMICOLON       reduce using rule 2 (block -> var_decls BEGIN stmt_list END .)
+
+
+state 47
+
+    (26) stmt_list -> stmt_list SEMICOLON . stmt
+    (27) stmt_list -> stmt_list SEMICOLON .
+    (30) stmt -> . assign_stmt
+    (31) stmt -> . if_stmt
+    (32) stmt -> . while_stmt
+    (33) stmt -> . for_stmt
+    (34) stmt -> . writeln_stmt
+    (35) stmt -> . readln_stmt
+    (36) stmt -> . write_stmt
+    (37) stmt -> . block_stmt
+    (38) stmt -> . func_call
+    (39) assign_stmt -> . var_ref ASSIGN logic_expr
+    (42) if_stmt -> . IF logic_expr THEN stmt
+    (43) if_stmt -> . IF logic_expr THEN stmt ELSE stmt
+    (44) while_stmt -> . WHILE logic_expr DO stmt
+    (45) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+    (48) writeln_stmt -> . WRITELN LPAREN expr_list RPAREN
+    (49) writeln_stmt -> . WRITELN
+    (50) readln_stmt -> . READLN LPAREN var_ref RPAREN
+    (47) write_stmt -> . WRITE LPAREN expr_list RPAREN
+    (51) block_stmt -> . BEGIN stmt_list END
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+
+    END             reduce using rule 27 (stmt_list -> stmt_list SEMICOLON .)
+    SEMICOLON       reduce using rule 27 (stmt_list -> stmt_list SEMICOLON .)
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+    WRITELN         shift and go to state 38
+    READLN          shift and go to state 39
+    WRITE           shift and go to state 40
+    BEGIN           shift and go to state 20
+    IDENTIFIER      shift and go to state 37
+
+    stmt                           shift and go to state 83
+    assign_stmt                    shift and go to state 24
+    if_stmt                        shift and go to state 25
+    while_stmt                     shift and go to state 26
+    for_stmt                       shift and go to state 27
+    writeln_stmt                   shift and go to state 28
+    readln_stmt                    shift and go to state 29
+    write_stmt                     shift and go to state 30
+    block_stmt                     shift and go to state 31
+    func_call                      shift and go to state 32
+    var_ref                        shift and go to state 33
+
+state 48
+
+    (39) assign_stmt -> var_ref ASSIGN . logic_expr
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    var_ref                        shift and go to state 61
+    logic_expr                     shift and go to state 84
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    func_call                      shift and go to state 62
+
+state 49
+
+    (42) if_stmt -> IF logic_expr . THEN stmt
+    (43) if_stmt -> IF logic_expr . THEN stmt ELSE stmt
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    THEN            shift and go to state 85
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 50
+
+    (59) logic_expr -> rel_expr .
+    (60) rel_expr -> rel_expr . EQ expr
+    (61) rel_expr -> rel_expr . NE expr
+    (62) rel_expr -> rel_expr . LT expr
+    (63) rel_expr -> rel_expr . GT expr
+    (64) rel_expr -> rel_expr . LE expr
+    (65) rel_expr -> rel_expr . GE expr
+
+    THEN            reduce using rule 59 (logic_expr -> rel_expr .)
+    AND             reduce using rule 59 (logic_expr -> rel_expr .)
+    OR              reduce using rule 59 (logic_expr -> rel_expr .)
+    DO              reduce using rule 59 (logic_expr -> rel_expr .)
+    END             reduce using rule 59 (logic_expr -> rel_expr .)
+    SEMICOLON       reduce using rule 59 (logic_expr -> rel_expr .)
+    ELSE            reduce using rule 59 (logic_expr -> rel_expr .)
+    RPAREN          reduce using rule 59 (logic_expr -> rel_expr .)
+    COMMA           reduce using rule 59 (logic_expr -> rel_expr .)
+    RBRACKET        reduce using rule 59 (logic_expr -> rel_expr .)
+    TO              reduce using rule 59 (logic_expr -> rel_expr .)
+    DOWNTO          reduce using rule 59 (logic_expr -> rel_expr .)
+    EQ              shift and go to state 88
+    NE              shift and go to state 89
+    LT              shift and go to state 90
+    GT              shift and go to state 91
+    LE              shift and go to state 92
+    GE              shift and go to state 93
+
+
+state 51
+
+    (58) logic_expr -> NOT . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    rel_expr                       shift and go to state 94
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 52
+
+    (66) rel_expr -> expr .
+    (67) expr -> expr . PLUS term
+    (68) expr -> expr . MINUS term
+
+    EQ              reduce using rule 66 (rel_expr -> expr .)
+    NE              reduce using rule 66 (rel_expr -> expr .)
+    LT              reduce using rule 66 (rel_expr -> expr .)
+    GT              reduce using rule 66 (rel_expr -> expr .)
+    LE              reduce using rule 66 (rel_expr -> expr .)
+    GE              reduce using rule 66 (rel_expr -> expr .)
+    THEN            reduce using rule 66 (rel_expr -> expr .)
+    AND             reduce using rule 66 (rel_expr -> expr .)
+    OR              reduce using rule 66 (rel_expr -> expr .)
+    DO              reduce using rule 66 (rel_expr -> expr .)
+    END             reduce using rule 66 (rel_expr -> expr .)
+    SEMICOLON       reduce using rule 66 (rel_expr -> expr .)
+    ELSE            reduce using rule 66 (rel_expr -> expr .)
+    RPAREN          reduce using rule 66 (rel_expr -> expr .)
+    COMMA           reduce using rule 66 (rel_expr -> expr .)
+    RBRACKET        reduce using rule 66 (rel_expr -> expr .)
+    TO              reduce using rule 66 (rel_expr -> expr .)
+    DOWNTO          reduce using rule 66 (rel_expr -> expr .)
+    PLUS            shift and go to state 95
+    MINUS           shift and go to state 96
+
+
+state 53
+
+    (69) expr -> term .
+    (70) term -> term . TIMES factor
+    (71) term -> term . DIVIDE factor
+    (72) term -> term . MOD factor
+
+    PLUS            reduce using rule 69 (expr -> term .)
+    MINUS           reduce using rule 69 (expr -> term .)
+    EQ              reduce using rule 69 (expr -> term .)
+    NE              reduce using rule 69 (expr -> term .)
+    LT              reduce using rule 69 (expr -> term .)
+    GT              reduce using rule 69 (expr -> term .)
+    LE              reduce using rule 69 (expr -> term .)
+    GE              reduce using rule 69 (expr -> term .)
+    THEN            reduce using rule 69 (expr -> term .)
+    AND             reduce using rule 69 (expr -> term .)
+    OR              reduce using rule 69 (expr -> term .)
+    DO              reduce using rule 69 (expr -> term .)
+    END             reduce using rule 69 (expr -> term .)
+    SEMICOLON       reduce using rule 69 (expr -> term .)
+    ELSE            reduce using rule 69 (expr -> term .)
+    RPAREN          reduce using rule 69 (expr -> term .)
+    COMMA           reduce using rule 69 (expr -> term .)
+    RBRACKET        reduce using rule 69 (expr -> term .)
+    TO              reduce using rule 69 (expr -> term .)
+    DOWNTO          reduce using rule 69 (expr -> term .)
+    TIMES           shift and go to state 97
+    DIVIDE          shift and go to state 98
+    MOD             shift and go to state 99
+
+
+state 54
+
+    (73) term -> factor .
+
+    TIMES           reduce using rule 73 (term -> factor .)
+    DIVIDE          reduce using rule 73 (term -> factor .)
+    MOD             reduce using rule 73 (term -> factor .)
+    PLUS            reduce using rule 73 (term -> factor .)
+    MINUS           reduce using rule 73 (term -> factor .)
+    EQ              reduce using rule 73 (term -> factor .)
+    NE              reduce using rule 73 (term -> factor .)
+    LT              reduce using rule 73 (term -> factor .)
+    GT              reduce using rule 73 (term -> factor .)
+    LE              reduce using rule 73 (term -> factor .)
+    GE              reduce using rule 73 (term -> factor .)
+    THEN            reduce using rule 73 (term -> factor .)
+    AND             reduce using rule 73 (term -> factor .)
+    OR              reduce using rule 73 (term -> factor .)
+    DO              reduce using rule 73 (term -> factor .)
+    END             reduce using rule 73 (term -> factor .)
+    SEMICOLON       reduce using rule 73 (term -> factor .)
+    ELSE            reduce using rule 73 (term -> factor .)
+    RPAREN          reduce using rule 73 (term -> factor .)
+    COMMA           reduce using rule 73 (term -> factor .)
+    RBRACKET        reduce using rule 73 (term -> factor .)
+    TO              reduce using rule 73 (term -> factor .)
+    DOWNTO          reduce using rule 73 (term -> factor .)
+
+
+state 55
+
+    (74) factor -> LENGTH . LPAREN expr RPAREN
+
+    LPAREN          shift and go to state 100
+
+
+state 56
+
+    (81) primary -> LPAREN . logic_expr RPAREN
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    logic_expr                     shift and go to state 101
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 57
+
+    (75) factor -> primary .
+
+    TIMES           reduce using rule 75 (factor -> primary .)
+    DIVIDE          reduce using rule 75 (factor -> primary .)
+    MOD             reduce using rule 75 (factor -> primary .)
+    PLUS            reduce using rule 75 (factor -> primary .)
+    MINUS           reduce using rule 75 (factor -> primary .)
+    EQ              reduce using rule 75 (factor -> primary .)
+    NE              reduce using rule 75 (factor -> primary .)
+    LT              reduce using rule 75 (factor -> primary .)
+    GT              reduce using rule 75 (factor -> primary .)
+    LE              reduce using rule 75 (factor -> primary .)
+    GE              reduce using rule 75 (factor -> primary .)
+    THEN            reduce using rule 75 (factor -> primary .)
+    AND             reduce using rule 75 (factor -> primary .)
+    OR              reduce using rule 75 (factor -> primary .)
+    DO              reduce using rule 75 (factor -> primary .)
+    END             reduce using rule 75 (factor -> primary .)
+    SEMICOLON       reduce using rule 75 (factor -> primary .)
+    ELSE            reduce using rule 75 (factor -> primary .)
+    RPAREN          reduce using rule 75 (factor -> primary .)
+    COMMA           reduce using rule 75 (factor -> primary .)
+    RBRACKET        reduce using rule 75 (factor -> primary .)
+    TO              reduce using rule 75 (factor -> primary .)
+    DOWNTO          reduce using rule 75 (factor -> primary .)
+
+
+state 58
+
+    (76) primary -> NUMBER .
+
+    TIMES           reduce using rule 76 (primary -> NUMBER .)
+    DIVIDE          reduce using rule 76 (primary -> NUMBER .)
+    MOD             reduce using rule 76 (primary -> NUMBER .)
+    PLUS            reduce using rule 76 (primary -> NUMBER .)
+    MINUS           reduce using rule 76 (primary -> NUMBER .)
+    EQ              reduce using rule 76 (primary -> NUMBER .)
+    NE              reduce using rule 76 (primary -> NUMBER .)
+    LT              reduce using rule 76 (primary -> NUMBER .)
+    GT              reduce using rule 76 (primary -> NUMBER .)
+    LE              reduce using rule 76 (primary -> NUMBER .)
+    GE              reduce using rule 76 (primary -> NUMBER .)
+    THEN            reduce using rule 76 (primary -> NUMBER .)
+    AND             reduce using rule 76 (primary -> NUMBER .)
+    OR              reduce using rule 76 (primary -> NUMBER .)
+    DO              reduce using rule 76 (primary -> NUMBER .)
+    END             reduce using rule 76 (primary -> NUMBER .)
+    SEMICOLON       reduce using rule 76 (primary -> NUMBER .)
+    ELSE            reduce using rule 76 (primary -> NUMBER .)
+    RPAREN          reduce using rule 76 (primary -> NUMBER .)
+    COMMA           reduce using rule 76 (primary -> NUMBER .)
+    RBRACKET        reduce using rule 76 (primary -> NUMBER .)
+    TO              reduce using rule 76 (primary -> NUMBER .)
+    DOWNTO          reduce using rule 76 (primary -> NUMBER .)
+
+
+state 59
+
+    (77) primary -> STRING .
+
+    TIMES           reduce using rule 77 (primary -> STRING .)
+    DIVIDE          reduce using rule 77 (primary -> STRING .)
+    MOD             reduce using rule 77 (primary -> STRING .)
+    PLUS            reduce using rule 77 (primary -> STRING .)
+    MINUS           reduce using rule 77 (primary -> STRING .)
+    EQ              reduce using rule 77 (primary -> STRING .)
+    NE              reduce using rule 77 (primary -> STRING .)
+    LT              reduce using rule 77 (primary -> STRING .)
+    GT              reduce using rule 77 (primary -> STRING .)
+    LE              reduce using rule 77 (primary -> STRING .)
+    GE              reduce using rule 77 (primary -> STRING .)
+    THEN            reduce using rule 77 (primary -> STRING .)
+    AND             reduce using rule 77 (primary -> STRING .)
+    OR              reduce using rule 77 (primary -> STRING .)
+    DO              reduce using rule 77 (primary -> STRING .)
+    END             reduce using rule 77 (primary -> STRING .)
+    SEMICOLON       reduce using rule 77 (primary -> STRING .)
+    ELSE            reduce using rule 77 (primary -> STRING .)
+    RPAREN          reduce using rule 77 (primary -> STRING .)
+    COMMA           reduce using rule 77 (primary -> STRING .)
+    RBRACKET        reduce using rule 77 (primary -> STRING .)
+    TO              reduce using rule 77 (primary -> STRING .)
+    DOWNTO          reduce using rule 77 (primary -> STRING .)
+
+
+state 60
+
+    (78) primary -> BOOLEAN_LITERAL .
+
+    TIMES           reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    DIVIDE          reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    MOD             reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    PLUS            reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    MINUS           reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    EQ              reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    NE              reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    LT              reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    GT              reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    LE              reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    GE              reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    THEN            reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    AND             reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    OR              reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    DO              reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    END             reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    SEMICOLON       reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    ELSE            reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    RPAREN          reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    COMMA           reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    RBRACKET        reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    TO              reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+    DOWNTO          reduce using rule 78 (primary -> BOOLEAN_LITERAL .)
+
+
+state 61
+
+    (79) primary -> var_ref .
+
+    TIMES           reduce using rule 79 (primary -> var_ref .)
+    DIVIDE          reduce using rule 79 (primary -> var_ref .)
+    MOD             reduce using rule 79 (primary -> var_ref .)
+    PLUS            reduce using rule 79 (primary -> var_ref .)
+    MINUS           reduce using rule 79 (primary -> var_ref .)
+    EQ              reduce using rule 79 (primary -> var_ref .)
+    NE              reduce using rule 79 (primary -> var_ref .)
+    LT              reduce using rule 79 (primary -> var_ref .)
+    GT              reduce using rule 79 (primary -> var_ref .)
+    LE              reduce using rule 79 (primary -> var_ref .)
+    GE              reduce using rule 79 (primary -> var_ref .)
+    THEN            reduce using rule 79 (primary -> var_ref .)
+    AND             reduce using rule 79 (primary -> var_ref .)
+    OR              reduce using rule 79 (primary -> var_ref .)
+    DO              reduce using rule 79 (primary -> var_ref .)
+    END             reduce using rule 79 (primary -> var_ref .)
+    SEMICOLON       reduce using rule 79 (primary -> var_ref .)
+    ELSE            reduce using rule 79 (primary -> var_ref .)
+    RPAREN          reduce using rule 79 (primary -> var_ref .)
+    COMMA           reduce using rule 79 (primary -> var_ref .)
+    RBRACKET        reduce using rule 79 (primary -> var_ref .)
+    TO              reduce using rule 79 (primary -> var_ref .)
+    DOWNTO          reduce using rule 79 (primary -> var_ref .)
+
+
+state 62
+
+    (80) primary -> func_call .
+
+    TIMES           reduce using rule 80 (primary -> func_call .)
+    DIVIDE          reduce using rule 80 (primary -> func_call .)
+    MOD             reduce using rule 80 (primary -> func_call .)
+    PLUS            reduce using rule 80 (primary -> func_call .)
+    MINUS           reduce using rule 80 (primary -> func_call .)
+    EQ              reduce using rule 80 (primary -> func_call .)
+    NE              reduce using rule 80 (primary -> func_call .)
+    LT              reduce using rule 80 (primary -> func_call .)
+    GT              reduce using rule 80 (primary -> func_call .)
+    LE              reduce using rule 80 (primary -> func_call .)
+    GE              reduce using rule 80 (primary -> func_call .)
+    THEN            reduce using rule 80 (primary -> func_call .)
+    AND             reduce using rule 80 (primary -> func_call .)
+    OR              reduce using rule 80 (primary -> func_call .)
+    DO              reduce using rule 80 (primary -> func_call .)
+    END             reduce using rule 80 (primary -> func_call .)
+    SEMICOLON       reduce using rule 80 (primary -> func_call .)
+    ELSE            reduce using rule 80 (primary -> func_call .)
+    RPAREN          reduce using rule 80 (primary -> func_call .)
+    COMMA           reduce using rule 80 (primary -> func_call .)
+    RBRACKET        reduce using rule 80 (primary -> func_call .)
+    TO              reduce using rule 80 (primary -> func_call .)
+    DOWNTO          reduce using rule 80 (primary -> func_call .)
+
+
+state 63
+
+    (40) var_ref -> IDENTIFIER .
+    (41) var_ref -> IDENTIFIER . LBRACKET logic_expr RBRACKET
+    (52) func_call -> IDENTIFIER . LPAREN expr_list RPAREN
+
+    TIMES           reduce using rule 40 (var_ref -> IDENTIFIER .)
+    DIVIDE          reduce using rule 40 (var_ref -> IDENTIFIER .)
+    MOD             reduce using rule 40 (var_ref -> IDENTIFIER .)
+    PLUS            reduce using rule 40 (var_ref -> IDENTIFIER .)
+    MINUS           reduce using rule 40 (var_ref -> IDENTIFIER .)
+    EQ              reduce using rule 40 (var_ref -> IDENTIFIER .)
+    NE              reduce using rule 40 (var_ref -> IDENTIFIER .)
+    LT              reduce using rule 40 (var_ref -> IDENTIFIER .)
+    GT              reduce using rule 40 (var_ref -> IDENTIFIER .)
+    LE              reduce using rule 40 (var_ref -> IDENTIFIER .)
+    GE              reduce using rule 40 (var_ref -> IDENTIFIER .)
+    THEN            reduce using rule 40 (var_ref -> IDENTIFIER .)
+    AND             reduce using rule 40 (var_ref -> IDENTIFIER .)
+    OR              reduce using rule 40 (var_ref -> IDENTIFIER .)
+    DO              reduce using rule 40 (var_ref -> IDENTIFIER .)
+    END             reduce using rule 40 (var_ref -> IDENTIFIER .)
+    SEMICOLON       reduce using rule 40 (var_ref -> IDENTIFIER .)
+    ELSE            reduce using rule 40 (var_ref -> IDENTIFIER .)
+    RPAREN          reduce using rule 40 (var_ref -> IDENTIFIER .)
+    COMMA           reduce using rule 40 (var_ref -> IDENTIFIER .)
+    RBRACKET        reduce using rule 40 (var_ref -> IDENTIFIER .)
+    TO              reduce using rule 40 (var_ref -> IDENTIFIER .)
+    DOWNTO          reduce using rule 40 (var_ref -> IDENTIFIER .)
+    LBRACKET        shift and go to state 67
+    LPAREN          shift and go to state 66
+
+
+state 64
+
+    (44) while_stmt -> WHILE logic_expr . DO stmt
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    DO              shift and go to state 102
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 65
+
+    (45) for_stmt -> FOR IDENTIFIER . ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> FOR IDENTIFIER . ASSIGN logic_expr DOWNTO logic_expr DO stmt
+
+    ASSIGN          shift and go to state 103
+
+
+state 66
+
+    (52) func_call -> IDENTIFIER LPAREN . expr_list RPAREN
+    (53) expr_list -> . expr_list COMMA logic_expr
+    (54) expr_list -> . logic_expr
+    (55) expr_list -> . empty
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (82) empty -> .
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    RPAREN          reduce using rule 82 (empty -> .)
+    COMMA           reduce using rule 82 (empty -> .)
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr_list                      shift and go to state 104
+    logic_expr                     shift and go to state 105
+    empty                          shift and go to state 106
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 67
+
+    (41) var_ref -> IDENTIFIER LBRACKET . logic_expr RBRACKET
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    logic_expr                     shift and go to state 107
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 68
+
+    (48) writeln_stmt -> WRITELN LPAREN . expr_list RPAREN
+    (53) expr_list -> . expr_list COMMA logic_expr
+    (54) expr_list -> . logic_expr
+    (55) expr_list -> . empty
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (82) empty -> .
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    RPAREN          reduce using rule 82 (empty -> .)
+    COMMA           reduce using rule 82 (empty -> .)
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr_list                      shift and go to state 108
+    logic_expr                     shift and go to state 105
+    empty                          shift and go to state 106
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 69
+
+    (50) readln_stmt -> READLN LPAREN . var_ref RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+
+    IDENTIFIER      shift and go to state 110
+
+    var_ref                        shift and go to state 109
+
+state 70
+
+    (47) write_stmt -> WRITE LPAREN . expr_list RPAREN
+    (53) expr_list -> . expr_list COMMA logic_expr
+    (54) expr_list -> . logic_expr
+    (55) expr_list -> . empty
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (82) empty -> .
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    RPAREN          reduce using rule 82 (empty -> .)
+    COMMA           reduce using rule 82 (empty -> .)
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr_list                      shift and go to state 111
+    logic_expr                     shift and go to state 105
+    empty                          shift and go to state 106
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 71
+
+    (20) function_decl -> FUNCTION IDENTIFIER LPAREN param_list . RPAREN SEMICOLON block SEMICOLON
+    (21) function_decl -> FUNCTION IDENTIFIER LPAREN param_list . RPAREN COLON type SEMICOLON block SEMICOLON
+    (22) param_list -> param_list . SEMICOLON param
+
+    RPAREN          shift and go to state 112
+    SEMICOLON       shift and go to state 113
+
+
+state 72
+
+    (23) param_list -> param .
+
+    RPAREN          reduce using rule 23 (param_list -> param .)
+    SEMICOLON       reduce using rule 23 (param_list -> param .)
+
+
+state 73
+
+    (24) param_list -> empty .
+
+    RPAREN          reduce using rule 24 (param_list -> empty .)
+    SEMICOLON       reduce using rule 24 (param_list -> empty .)
+
+
+state 74
+
+    (25) param -> id_list . COLON type
+    (8) id_list -> id_list . COMMA IDENTIFIER
+
+    COLON           shift and go to state 114
+    COMMA           shift and go to state 44
+
+
+state 75
+
+    (7) var_decl -> id_list COLON type . SEMICOLON
+
+    SEMICOLON       shift and go to state 115
+
+
+state 76
+
+    (10) type -> INTEGER .
+
+    SEMICOLON       reduce using rule 10 (type -> INTEGER .)
+    RPAREN          reduce using rule 10 (type -> INTEGER .)
+
+
+state 77
+
+    (11) type -> BOOLEAN .
+
+    SEMICOLON       reduce using rule 11 (type -> BOOLEAN .)
+    RPAREN          reduce using rule 11 (type -> BOOLEAN .)
+
+
+state 78
+
+    (12) type -> STRING_TYPE .
+
+    SEMICOLON       reduce using rule 12 (type -> STRING_TYPE .)
+    RPAREN          reduce using rule 12 (type -> STRING_TYPE .)
+
+
+state 79
+
+    (13) type -> array_type .
+
+    SEMICOLON       reduce using rule 13 (type -> array_type .)
+    RPAREN          reduce using rule 13 (type -> array_type .)
+
+
+state 80
+
+    (14) array_type -> ARRAY . LBRACKET NUMBER RANGE NUMBER RBRACKET OF simple_type
+
+    LBRACKET        shift and go to state 116
+
+
+state 81
+
+    (8) id_list -> id_list COMMA IDENTIFIER .
+
+    COLON           reduce using rule 8 (id_list -> id_list COMMA IDENTIFIER .)
+    COMMA           reduce using rule 8 (id_list -> id_list COMMA IDENTIFIER .)
+
+
+state 82
+
+    (51) block_stmt -> BEGIN stmt_list END .
+
+    END             reduce using rule 51 (block_stmt -> BEGIN stmt_list END .)
+    SEMICOLON       reduce using rule 51 (block_stmt -> BEGIN stmt_list END .)
+    ELSE            reduce using rule 51 (block_stmt -> BEGIN stmt_list END .)
+
+
+state 83
+
+    (26) stmt_list -> stmt_list SEMICOLON stmt .
+
+    END             reduce using rule 26 (stmt_list -> stmt_list SEMICOLON stmt .)
+    SEMICOLON       reduce using rule 26 (stmt_list -> stmt_list SEMICOLON stmt .)
+
+
+state 84
+
+    (39) assign_stmt -> var_ref ASSIGN logic_expr .
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    END             reduce using rule 39 (assign_stmt -> var_ref ASSIGN logic_expr .)
+    SEMICOLON       reduce using rule 39 (assign_stmt -> var_ref ASSIGN logic_expr .)
+    ELSE            reduce using rule 39 (assign_stmt -> var_ref ASSIGN logic_expr .)
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 85
+
+    (42) if_stmt -> IF logic_expr THEN . stmt
+    (43) if_stmt -> IF logic_expr THEN . stmt ELSE stmt
+    (30) stmt -> . assign_stmt
+    (31) stmt -> . if_stmt
+    (32) stmt -> . while_stmt
+    (33) stmt -> . for_stmt
+    (34) stmt -> . writeln_stmt
+    (35) stmt -> . readln_stmt
+    (36) stmt -> . write_stmt
+    (37) stmt -> . block_stmt
+    (38) stmt -> . func_call
+    (39) assign_stmt -> . var_ref ASSIGN logic_expr
+    (42) if_stmt -> . IF logic_expr THEN stmt
+    (43) if_stmt -> . IF logic_expr THEN stmt ELSE stmt
+    (44) while_stmt -> . WHILE logic_expr DO stmt
+    (45) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+    (48) writeln_stmt -> . WRITELN LPAREN expr_list RPAREN
+    (49) writeln_stmt -> . WRITELN
+    (50) readln_stmt -> . READLN LPAREN var_ref RPAREN
+    (47) write_stmt -> . WRITE LPAREN expr_list RPAREN
+    (51) block_stmt -> . BEGIN stmt_list END
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+    WRITELN         shift and go to state 38
+    READLN          shift and go to state 39
+    WRITE           shift and go to state 40
+    BEGIN           shift and go to state 20
+    IDENTIFIER      shift and go to state 37
+
+    stmt                           shift and go to state 117
+    assign_stmt                    shift and go to state 24
+    if_stmt                        shift and go to state 25
+    while_stmt                     shift and go to state 26
+    for_stmt                       shift and go to state 27
+    writeln_stmt                   shift and go to state 28
+    readln_stmt                    shift and go to state 29
+    write_stmt                     shift and go to state 30
+    block_stmt                     shift and go to state 31
+    func_call                      shift and go to state 32
+    var_ref                        shift and go to state 33
+
+state 86
+
+    (56) logic_expr -> logic_expr AND . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    rel_expr                       shift and go to state 118
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 87
+
+    (57) logic_expr -> logic_expr OR . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    rel_expr                       shift and go to state 119
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 88
+
+    (60) rel_expr -> rel_expr EQ . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr                           shift and go to state 120
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 89
+
+    (61) rel_expr -> rel_expr NE . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr                           shift and go to state 121
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 90
+
+    (62) rel_expr -> rel_expr LT . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr                           shift and go to state 122
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 91
+
+    (63) rel_expr -> rel_expr GT . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr                           shift and go to state 123
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 92
+
+    (64) rel_expr -> rel_expr LE . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr                           shift and go to state 124
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 93
+
+    (65) rel_expr -> rel_expr GE . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr                           shift and go to state 125
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 94
+
+    (58) logic_expr -> NOT rel_expr .
+    (60) rel_expr -> rel_expr . EQ expr
+    (61) rel_expr -> rel_expr . NE expr
+    (62) rel_expr -> rel_expr . LT expr
+    (63) rel_expr -> rel_expr . GT expr
+    (64) rel_expr -> rel_expr . LE expr
+    (65) rel_expr -> rel_expr . GE expr
+
+    THEN            reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    AND             reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    OR              reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    DO              reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    END             reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    SEMICOLON       reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    ELSE            reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    RPAREN          reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    COMMA           reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    RBRACKET        reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    TO              reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    DOWNTO          reduce using rule 58 (logic_expr -> NOT rel_expr .)
+    EQ              shift and go to state 88
+    NE              shift and go to state 89
+    LT              shift and go to state 90
+    GT              shift and go to state 91
+    LE              shift and go to state 92
+    GE              shift and go to state 93
+
+
+state 95
+
+    (67) expr -> expr PLUS . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    term                           shift and go to state 126
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 96
+
+    (68) expr -> expr MINUS . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    term                           shift and go to state 127
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 97
+
+    (70) term -> term TIMES . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    factor                         shift and go to state 128
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 98
+
+    (71) term -> term DIVIDE . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    factor                         shift and go to state 129
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 99
+
+    (72) term -> term MOD . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    factor                         shift and go to state 130
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 100
+
+    (74) factor -> LENGTH LPAREN . expr RPAREN
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    expr                           shift and go to state 131
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 101
+
+    (81) primary -> LPAREN logic_expr . RPAREN
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    RPAREN          shift and go to state 132
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 102
+
+    (44) while_stmt -> WHILE logic_expr DO . stmt
+    (30) stmt -> . assign_stmt
+    (31) stmt -> . if_stmt
+    (32) stmt -> . while_stmt
+    (33) stmt -> . for_stmt
+    (34) stmt -> . writeln_stmt
+    (35) stmt -> . readln_stmt
+    (36) stmt -> . write_stmt
+    (37) stmt -> . block_stmt
+    (38) stmt -> . func_call
+    (39) assign_stmt -> . var_ref ASSIGN logic_expr
+    (42) if_stmt -> . IF logic_expr THEN stmt
+    (43) if_stmt -> . IF logic_expr THEN stmt ELSE stmt
+    (44) while_stmt -> . WHILE logic_expr DO stmt
+    (45) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+    (48) writeln_stmt -> . WRITELN LPAREN expr_list RPAREN
+    (49) writeln_stmt -> . WRITELN
+    (50) readln_stmt -> . READLN LPAREN var_ref RPAREN
+    (47) write_stmt -> . WRITE LPAREN expr_list RPAREN
+    (51) block_stmt -> . BEGIN stmt_list END
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+    WRITELN         shift and go to state 38
+    READLN          shift and go to state 39
+    WRITE           shift and go to state 40
+    BEGIN           shift and go to state 20
+    IDENTIFIER      shift and go to state 37
+
+    stmt                           shift and go to state 133
+    assign_stmt                    shift and go to state 24
+    if_stmt                        shift and go to state 25
+    while_stmt                     shift and go to state 26
+    for_stmt                       shift and go to state 27
+    writeln_stmt                   shift and go to state 28
+    readln_stmt                    shift and go to state 29
+    write_stmt                     shift and go to state 30
+    block_stmt                     shift and go to state 31
+    func_call                      shift and go to state 32
+    var_ref                        shift and go to state 33
+
+state 103
+
+    (45) for_stmt -> FOR IDENTIFIER ASSIGN . logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> FOR IDENTIFIER ASSIGN . logic_expr DOWNTO logic_expr DO stmt
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    logic_expr                     shift and go to state 134
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 104
+
+    (52) func_call -> IDENTIFIER LPAREN expr_list . RPAREN
+    (53) expr_list -> expr_list . COMMA logic_expr
+
+    RPAREN          shift and go to state 135
+    COMMA           shift and go to state 136
+
+
+state 105
+
+    (54) expr_list -> logic_expr .
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    RPAREN          reduce using rule 54 (expr_list -> logic_expr .)
+    COMMA           reduce using rule 54 (expr_list -> logic_expr .)
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 106
+
+    (55) expr_list -> empty .
+
+    RPAREN          reduce using rule 55 (expr_list -> empty .)
+    COMMA           reduce using rule 55 (expr_list -> empty .)
+
+
+state 107
+
+    (41) var_ref -> IDENTIFIER LBRACKET logic_expr . RBRACKET
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    RBRACKET        shift and go to state 137
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 108
+
+    (48) writeln_stmt -> WRITELN LPAREN expr_list . RPAREN
+    (53) expr_list -> expr_list . COMMA logic_expr
+
+    RPAREN          shift and go to state 138
+    COMMA           shift and go to state 136
+
+
+state 109
+
+    (50) readln_stmt -> READLN LPAREN var_ref . RPAREN
+
+    RPAREN          shift and go to state 139
+
+
+state 110
+
+    (40) var_ref -> IDENTIFIER .
+    (41) var_ref -> IDENTIFIER . LBRACKET logic_expr RBRACKET
+
+    RPAREN          reduce using rule 40 (var_ref -> IDENTIFIER .)
+    LBRACKET        shift and go to state 67
+
+
+state 111
+
+    (47) write_stmt -> WRITE LPAREN expr_list . RPAREN
+    (53) expr_list -> expr_list . COMMA logic_expr
+
+    RPAREN          shift and go to state 140
+    COMMA           shift and go to state 136
+
+
+state 112
+
+    (20) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN . SEMICOLON block SEMICOLON
+    (21) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN . COLON type SEMICOLON block SEMICOLON
+
+    SEMICOLON       shift and go to state 141
+    COLON           shift and go to state 142
+
+
+state 113
+
+    (22) param_list -> param_list SEMICOLON . param
+    (25) param -> . id_list COLON type
+    (8) id_list -> . id_list COMMA IDENTIFIER
+    (9) id_list -> . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 19
+
+    param                          shift and go to state 143
+    id_list                        shift and go to state 74
+
+state 114
+
+    (25) param -> id_list COLON . type
+    (10) type -> . INTEGER
+    (11) type -> . BOOLEAN
+    (12) type -> . STRING_TYPE
+    (13) type -> . array_type
+    (14) array_type -> . ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF simple_type
+
+    INTEGER         shift and go to state 76
+    BOOLEAN         shift and go to state 77
+    STRING_TYPE     shift and go to state 78
+    ARRAY           shift and go to state 80
+
+    type                           shift and go to state 144
+    array_type                     shift and go to state 79
+
+state 115
+
+    (7) var_decl -> id_list COLON type SEMICOLON .
+
+    IDENTIFIER      reduce using rule 7 (var_decl -> id_list COLON type SEMICOLON .)
+    BEGIN           reduce using rule 7 (var_decl -> id_list COLON type SEMICOLON .)
+
+
+state 116
+
+    (14) array_type -> ARRAY LBRACKET . NUMBER RANGE NUMBER RBRACKET OF simple_type
+
+    NUMBER          shift and go to state 145
+
+
+state 117
+
+    (42) if_stmt -> IF logic_expr THEN stmt .
+    (43) if_stmt -> IF logic_expr THEN stmt . ELSE stmt
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    END             reduce using rule 42 (if_stmt -> IF logic_expr THEN stmt .)
+    SEMICOLON       reduce using rule 42 (if_stmt -> IF logic_expr THEN stmt .)
+    ELSE            shift and go to state 146
+
+  ! ELSE            [ reduce using rule 42 (if_stmt -> IF logic_expr THEN stmt .) ]
+
+
+state 118
+
+    (56) logic_expr -> logic_expr AND rel_expr .
+    (60) rel_expr -> rel_expr . EQ expr
+    (61) rel_expr -> rel_expr . NE expr
+    (62) rel_expr -> rel_expr . LT expr
+    (63) rel_expr -> rel_expr . GT expr
+    (64) rel_expr -> rel_expr . LE expr
+    (65) rel_expr -> rel_expr . GE expr
+
+    THEN            reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    AND             reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    OR              reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    DO              reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    END             reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    SEMICOLON       reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    ELSE            reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    RPAREN          reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    COMMA           reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    RBRACKET        reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    TO              reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    DOWNTO          reduce using rule 56 (logic_expr -> logic_expr AND rel_expr .)
+    EQ              shift and go to state 88
+    NE              shift and go to state 89
+    LT              shift and go to state 90
+    GT              shift and go to state 91
+    LE              shift and go to state 92
+    GE              shift and go to state 93
+
+
+state 119
+
+    (57) logic_expr -> logic_expr OR rel_expr .
+    (60) rel_expr -> rel_expr . EQ expr
+    (61) rel_expr -> rel_expr . NE expr
+    (62) rel_expr -> rel_expr . LT expr
+    (63) rel_expr -> rel_expr . GT expr
+    (64) rel_expr -> rel_expr . LE expr
+    (65) rel_expr -> rel_expr . GE expr
+
+    THEN            reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    AND             reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    OR              reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    DO              reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    END             reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    SEMICOLON       reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    ELSE            reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    RPAREN          reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    COMMA           reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    RBRACKET        reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    TO              reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    DOWNTO          reduce using rule 57 (logic_expr -> logic_expr OR rel_expr .)
+    EQ              shift and go to state 88
+    NE              shift and go to state 89
+    LT              shift and go to state 90
+    GT              shift and go to state 91
+    LE              shift and go to state 92
+    GE              shift and go to state 93
+
+
+state 120
+
+    (60) rel_expr -> rel_expr EQ expr .
+    (67) expr -> expr . PLUS term
+    (68) expr -> expr . MINUS term
+
+    EQ              reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    NE              reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    LT              reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    GT              reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    LE              reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    GE              reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    THEN            reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    AND             reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    OR              reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    DO              reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    END             reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    SEMICOLON       reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    ELSE            reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    RPAREN          reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    COMMA           reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    RBRACKET        reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    TO              reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    DOWNTO          reduce using rule 60 (rel_expr -> rel_expr EQ expr .)
+    PLUS            shift and go to state 95
+    MINUS           shift and go to state 96
+
+
+state 121
+
+    (61) rel_expr -> rel_expr NE expr .
+    (67) expr -> expr . PLUS term
+    (68) expr -> expr . MINUS term
+
+    EQ              reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    NE              reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    LT              reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    GT              reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    LE              reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    GE              reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    THEN            reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    AND             reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    OR              reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    DO              reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    END             reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    SEMICOLON       reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    ELSE            reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    RPAREN          reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    COMMA           reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    RBRACKET        reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    TO              reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    DOWNTO          reduce using rule 61 (rel_expr -> rel_expr NE expr .)
+    PLUS            shift and go to state 95
+    MINUS           shift and go to state 96
+
+
+state 122
+
+    (62) rel_expr -> rel_expr LT expr .
+    (67) expr -> expr . PLUS term
+    (68) expr -> expr . MINUS term
+
+    EQ              reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    NE              reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    LT              reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    GT              reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    LE              reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    GE              reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    THEN            reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    AND             reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    OR              reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    DO              reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    END             reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    SEMICOLON       reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    ELSE            reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    RPAREN          reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    COMMA           reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    RBRACKET        reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    TO              reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    DOWNTO          reduce using rule 62 (rel_expr -> rel_expr LT expr .)
+    PLUS            shift and go to state 95
+    MINUS           shift and go to state 96
+
+
+state 123
+
+    (63) rel_expr -> rel_expr GT expr .
+    (67) expr -> expr . PLUS term
+    (68) expr -> expr . MINUS term
+
+    EQ              reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    NE              reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    LT              reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    GT              reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    LE              reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    GE              reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    THEN            reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    AND             reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    OR              reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    DO              reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    END             reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    SEMICOLON       reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    ELSE            reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    RPAREN          reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    COMMA           reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    RBRACKET        reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    TO              reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    DOWNTO          reduce using rule 63 (rel_expr -> rel_expr GT expr .)
+    PLUS            shift and go to state 95
+    MINUS           shift and go to state 96
+
+
+state 124
+
+    (64) rel_expr -> rel_expr LE expr .
+    (67) expr -> expr . PLUS term
+    (68) expr -> expr . MINUS term
+
+    EQ              reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    NE              reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    LT              reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    GT              reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    LE              reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    GE              reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    THEN            reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    AND             reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    OR              reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    DO              reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    END             reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    SEMICOLON       reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    ELSE            reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    RPAREN          reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    COMMA           reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    RBRACKET        reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    TO              reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    DOWNTO          reduce using rule 64 (rel_expr -> rel_expr LE expr .)
+    PLUS            shift and go to state 95
+    MINUS           shift and go to state 96
+
+
+state 125
+
+    (65) rel_expr -> rel_expr GE expr .
+    (67) expr -> expr . PLUS term
+    (68) expr -> expr . MINUS term
+
+    EQ              reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    NE              reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    LT              reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    GT              reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    LE              reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    GE              reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    THEN            reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    AND             reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    OR              reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    DO              reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    END             reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    SEMICOLON       reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    ELSE            reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    RPAREN          reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    COMMA           reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    RBRACKET        reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    TO              reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    DOWNTO          reduce using rule 65 (rel_expr -> rel_expr GE expr .)
+    PLUS            shift and go to state 95
+    MINUS           shift and go to state 96
+
+
+state 126
+
+    (67) expr -> expr PLUS term .
+    (70) term -> term . TIMES factor
+    (71) term -> term . DIVIDE factor
+    (72) term -> term . MOD factor
+
+    PLUS            reduce using rule 67 (expr -> expr PLUS term .)
+    MINUS           reduce using rule 67 (expr -> expr PLUS term .)
+    EQ              reduce using rule 67 (expr -> expr PLUS term .)
+    NE              reduce using rule 67 (expr -> expr PLUS term .)
+    LT              reduce using rule 67 (expr -> expr PLUS term .)
+    GT              reduce using rule 67 (expr -> expr PLUS term .)
+    LE              reduce using rule 67 (expr -> expr PLUS term .)
+    GE              reduce using rule 67 (expr -> expr PLUS term .)
+    THEN            reduce using rule 67 (expr -> expr PLUS term .)
+    AND             reduce using rule 67 (expr -> expr PLUS term .)
+    OR              reduce using rule 67 (expr -> expr PLUS term .)
+    DO              reduce using rule 67 (expr -> expr PLUS term .)
+    END             reduce using rule 67 (expr -> expr PLUS term .)
+    SEMICOLON       reduce using rule 67 (expr -> expr PLUS term .)
+    ELSE            reduce using rule 67 (expr -> expr PLUS term .)
+    RPAREN          reduce using rule 67 (expr -> expr PLUS term .)
+    COMMA           reduce using rule 67 (expr -> expr PLUS term .)
+    RBRACKET        reduce using rule 67 (expr -> expr PLUS term .)
+    TO              reduce using rule 67 (expr -> expr PLUS term .)
+    DOWNTO          reduce using rule 67 (expr -> expr PLUS term .)
+    TIMES           shift and go to state 97
+    DIVIDE          shift and go to state 98
+    MOD             shift and go to state 99
+
+
+state 127
+
+    (68) expr -> expr MINUS term .
+    (70) term -> term . TIMES factor
+    (71) term -> term . DIVIDE factor
+    (72) term -> term . MOD factor
+
+    PLUS            reduce using rule 68 (expr -> expr MINUS term .)
+    MINUS           reduce using rule 68 (expr -> expr MINUS term .)
+    EQ              reduce using rule 68 (expr -> expr MINUS term .)
+    NE              reduce using rule 68 (expr -> expr MINUS term .)
+    LT              reduce using rule 68 (expr -> expr MINUS term .)
+    GT              reduce using rule 68 (expr -> expr MINUS term .)
+    LE              reduce using rule 68 (expr -> expr MINUS term .)
+    GE              reduce using rule 68 (expr -> expr MINUS term .)
+    THEN            reduce using rule 68 (expr -> expr MINUS term .)
+    AND             reduce using rule 68 (expr -> expr MINUS term .)
+    OR              reduce using rule 68 (expr -> expr MINUS term .)
+    DO              reduce using rule 68 (expr -> expr MINUS term .)
+    END             reduce using rule 68 (expr -> expr MINUS term .)
+    SEMICOLON       reduce using rule 68 (expr -> expr MINUS term .)
+    ELSE            reduce using rule 68 (expr -> expr MINUS term .)
+    RPAREN          reduce using rule 68 (expr -> expr MINUS term .)
+    COMMA           reduce using rule 68 (expr -> expr MINUS term .)
+    RBRACKET        reduce using rule 68 (expr -> expr MINUS term .)
+    TO              reduce using rule 68 (expr -> expr MINUS term .)
+    DOWNTO          reduce using rule 68 (expr -> expr MINUS term .)
+    TIMES           shift and go to state 97
+    DIVIDE          shift and go to state 98
+    MOD             shift and go to state 99
+
+
+state 128
+
+    (70) term -> term TIMES factor .
+
+    TIMES           reduce using rule 70 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 70 (term -> term TIMES factor .)
+    MOD             reduce using rule 70 (term -> term TIMES factor .)
+    PLUS            reduce using rule 70 (term -> term TIMES factor .)
+    MINUS           reduce using rule 70 (term -> term TIMES factor .)
+    EQ              reduce using rule 70 (term -> term TIMES factor .)
+    NE              reduce using rule 70 (term -> term TIMES factor .)
+    LT              reduce using rule 70 (term -> term TIMES factor .)
+    GT              reduce using rule 70 (term -> term TIMES factor .)
+    LE              reduce using rule 70 (term -> term TIMES factor .)
+    GE              reduce using rule 70 (term -> term TIMES factor .)
+    THEN            reduce using rule 70 (term -> term TIMES factor .)
+    AND             reduce using rule 70 (term -> term TIMES factor .)
+    OR              reduce using rule 70 (term -> term TIMES factor .)
+    DO              reduce using rule 70 (term -> term TIMES factor .)
+    END             reduce using rule 70 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 70 (term -> term TIMES factor .)
+    ELSE            reduce using rule 70 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 70 (term -> term TIMES factor .)
+    COMMA           reduce using rule 70 (term -> term TIMES factor .)
+    RBRACKET        reduce using rule 70 (term -> term TIMES factor .)
+    TO              reduce using rule 70 (term -> term TIMES factor .)
+    DOWNTO          reduce using rule 70 (term -> term TIMES factor .)
+
+
+state 129
+
+    (71) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 71 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 71 (term -> term DIVIDE factor .)
+    MOD             reduce using rule 71 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 71 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 71 (term -> term DIVIDE factor .)
+    EQ              reduce using rule 71 (term -> term DIVIDE factor .)
+    NE              reduce using rule 71 (term -> term DIVIDE factor .)
+    LT              reduce using rule 71 (term -> term DIVIDE factor .)
+    GT              reduce using rule 71 (term -> term DIVIDE factor .)
+    LE              reduce using rule 71 (term -> term DIVIDE factor .)
+    GE              reduce using rule 71 (term -> term DIVIDE factor .)
+    THEN            reduce using rule 71 (term -> term DIVIDE factor .)
+    AND             reduce using rule 71 (term -> term DIVIDE factor .)
+    OR              reduce using rule 71 (term -> term DIVIDE factor .)
+    DO              reduce using rule 71 (term -> term DIVIDE factor .)
+    END             reduce using rule 71 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 71 (term -> term DIVIDE factor .)
+    ELSE            reduce using rule 71 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 71 (term -> term DIVIDE factor .)
+    COMMA           reduce using rule 71 (term -> term DIVIDE factor .)
+    RBRACKET        reduce using rule 71 (term -> term DIVIDE factor .)
+    TO              reduce using rule 71 (term -> term DIVIDE factor .)
+    DOWNTO          reduce using rule 71 (term -> term DIVIDE factor .)
+
+
+state 130
+
+    (72) term -> term MOD factor .
+
+    TIMES           reduce using rule 72 (term -> term MOD factor .)
+    DIVIDE          reduce using rule 72 (term -> term MOD factor .)
+    MOD             reduce using rule 72 (term -> term MOD factor .)
+    PLUS            reduce using rule 72 (term -> term MOD factor .)
+    MINUS           reduce using rule 72 (term -> term MOD factor .)
+    EQ              reduce using rule 72 (term -> term MOD factor .)
+    NE              reduce using rule 72 (term -> term MOD factor .)
+    LT              reduce using rule 72 (term -> term MOD factor .)
+    GT              reduce using rule 72 (term -> term MOD factor .)
+    LE              reduce using rule 72 (term -> term MOD factor .)
+    GE              reduce using rule 72 (term -> term MOD factor .)
+    THEN            reduce using rule 72 (term -> term MOD factor .)
+    AND             reduce using rule 72 (term -> term MOD factor .)
+    OR              reduce using rule 72 (term -> term MOD factor .)
+    DO              reduce using rule 72 (term -> term MOD factor .)
+    END             reduce using rule 72 (term -> term MOD factor .)
+    SEMICOLON       reduce using rule 72 (term -> term MOD factor .)
+    ELSE            reduce using rule 72 (term -> term MOD factor .)
+    RPAREN          reduce using rule 72 (term -> term MOD factor .)
+    COMMA           reduce using rule 72 (term -> term MOD factor .)
+    RBRACKET        reduce using rule 72 (term -> term MOD factor .)
+    TO              reduce using rule 72 (term -> term MOD factor .)
+    DOWNTO          reduce using rule 72 (term -> term MOD factor .)
+
+
+state 131
+
+    (74) factor -> LENGTH LPAREN expr . RPAREN
+    (67) expr -> expr . PLUS term
+    (68) expr -> expr . MINUS term
+
+    RPAREN          shift and go to state 147
+    PLUS            shift and go to state 95
+    MINUS           shift and go to state 96
+
+
+state 132
+
+    (81) primary -> LPAREN logic_expr RPAREN .
+
+    TIMES           reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    DIVIDE          reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    MOD             reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    PLUS            reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    MINUS           reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    EQ              reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    NE              reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    LT              reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    GT              reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    LE              reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    GE              reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    THEN            reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    AND             reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    OR              reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    DO              reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    END             reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    SEMICOLON       reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    ELSE            reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    RPAREN          reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    COMMA           reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    RBRACKET        reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    TO              reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+    DOWNTO          reduce using rule 81 (primary -> LPAREN logic_expr RPAREN .)
+
+
+state 133
+
+    (44) while_stmt -> WHILE logic_expr DO stmt .
+
+    END             reduce using rule 44 (while_stmt -> WHILE logic_expr DO stmt .)
+    SEMICOLON       reduce using rule 44 (while_stmt -> WHILE logic_expr DO stmt .)
+    ELSE            reduce using rule 44 (while_stmt -> WHILE logic_expr DO stmt .)
+
+
+state 134
+
+    (45) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr . TO logic_expr DO stmt
+    (46) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr . DOWNTO logic_expr DO stmt
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    TO              shift and go to state 148
+    DOWNTO          shift and go to state 149
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 135
+
+    (52) func_call -> IDENTIFIER LPAREN expr_list RPAREN .
+
+    END             reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    SEMICOLON       reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    TIMES           reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    DIVIDE          reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    MOD             reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    PLUS            reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    MINUS           reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    EQ              reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    NE              reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    LT              reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    GT              reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    LE              reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    GE              reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    THEN            reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    AND             reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    OR              reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    DO              reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    ELSE            reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    RPAREN          reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    COMMA           reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    RBRACKET        reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    TO              reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+    DOWNTO          reduce using rule 52 (func_call -> IDENTIFIER LPAREN expr_list RPAREN .)
+
+
+state 136
+
+    (53) expr_list -> expr_list COMMA . logic_expr
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    logic_expr                     shift and go to state 150
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 137
+
+    (41) var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .
+
+    ASSIGN          reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    TIMES           reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    DIVIDE          reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    MOD             reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    PLUS            reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    MINUS           reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    EQ              reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    NE              reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    LT              reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    GT              reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    LE              reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    GE              reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    THEN            reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    AND             reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    OR              reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    DO              reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    END             reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    SEMICOLON       reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    ELSE            reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    RPAREN          reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    COMMA           reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    RBRACKET        reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    TO              reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+    DOWNTO          reduce using rule 41 (var_ref -> IDENTIFIER LBRACKET logic_expr RBRACKET .)
+
+
+state 138
+
+    (48) writeln_stmt -> WRITELN LPAREN expr_list RPAREN .
+
+    END             reduce using rule 48 (writeln_stmt -> WRITELN LPAREN expr_list RPAREN .)
+    SEMICOLON       reduce using rule 48 (writeln_stmt -> WRITELN LPAREN expr_list RPAREN .)
+    ELSE            reduce using rule 48 (writeln_stmt -> WRITELN LPAREN expr_list RPAREN .)
+
+
+state 139
+
+    (50) readln_stmt -> READLN LPAREN var_ref RPAREN .
+
+    END             reduce using rule 50 (readln_stmt -> READLN LPAREN var_ref RPAREN .)
+    SEMICOLON       reduce using rule 50 (readln_stmt -> READLN LPAREN var_ref RPAREN .)
+    ELSE            reduce using rule 50 (readln_stmt -> READLN LPAREN var_ref RPAREN .)
+
+
+state 140
+
+    (47) write_stmt -> WRITE LPAREN expr_list RPAREN .
+
+    END             reduce using rule 47 (write_stmt -> WRITE LPAREN expr_list RPAREN .)
+    SEMICOLON       reduce using rule 47 (write_stmt -> WRITE LPAREN expr_list RPAREN .)
+    ELSE            reduce using rule 47 (write_stmt -> WRITE LPAREN expr_list RPAREN .)
+
+
+state 141
+
+    (20) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN SEMICOLON . block SEMICOLON
+    (2) block -> . var_decls BEGIN stmt_list END
+    (3) var_decls -> . VAR var_decl_list
+    (4) var_decls -> . empty
+    (82) empty -> .
+
+    VAR             shift and go to state 11
+    BEGIN           reduce using rule 82 (empty -> .)
+
+    block                          shift and go to state 151
+    var_decls                      shift and go to state 9
+    empty                          shift and go to state 12
+
+state 142
+
+    (21) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON . type SEMICOLON block SEMICOLON
+    (10) type -> . INTEGER
+    (11) type -> . BOOLEAN
+    (12) type -> . STRING_TYPE
+    (13) type -> . array_type
+    (14) array_type -> . ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF simple_type
+
+    INTEGER         shift and go to state 76
+    BOOLEAN         shift and go to state 77
+    STRING_TYPE     shift and go to state 78
+    ARRAY           shift and go to state 80
+
+    type                           shift and go to state 152
+    array_type                     shift and go to state 79
+
+state 143
+
+    (22) param_list -> param_list SEMICOLON param .
+
+    RPAREN          reduce using rule 22 (param_list -> param_list SEMICOLON param .)
+    SEMICOLON       reduce using rule 22 (param_list -> param_list SEMICOLON param .)
+
+
+state 144
+
+    (25) param -> id_list COLON type .
+
+    RPAREN          reduce using rule 25 (param -> id_list COLON type .)
+    SEMICOLON       reduce using rule 25 (param -> id_list COLON type .)
+
+
+state 145
+
+    (14) array_type -> ARRAY LBRACKET NUMBER . RANGE NUMBER RBRACKET OF simple_type
+
+    RANGE           shift and go to state 153
+
+
+state 146
+
+    (43) if_stmt -> IF logic_expr THEN stmt ELSE . stmt
+    (30) stmt -> . assign_stmt
+    (31) stmt -> . if_stmt
+    (32) stmt -> . while_stmt
+    (33) stmt -> . for_stmt
+    (34) stmt -> . writeln_stmt
+    (35) stmt -> . readln_stmt
+    (36) stmt -> . write_stmt
+    (37) stmt -> . block_stmt
+    (38) stmt -> . func_call
+    (39) assign_stmt -> . var_ref ASSIGN logic_expr
+    (42) if_stmt -> . IF logic_expr THEN stmt
+    (43) if_stmt -> . IF logic_expr THEN stmt ELSE stmt
+    (44) while_stmt -> . WHILE logic_expr DO stmt
+    (45) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+    (48) writeln_stmt -> . WRITELN LPAREN expr_list RPAREN
+    (49) writeln_stmt -> . WRITELN
+    (50) readln_stmt -> . READLN LPAREN var_ref RPAREN
+    (47) write_stmt -> . WRITE LPAREN expr_list RPAREN
+    (51) block_stmt -> . BEGIN stmt_list END
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+    WRITELN         shift and go to state 38
+    READLN          shift and go to state 39
+    WRITE           shift and go to state 40
+    BEGIN           shift and go to state 20
+    IDENTIFIER      shift and go to state 37
+
+    stmt                           shift and go to state 154
+    assign_stmt                    shift and go to state 24
+    if_stmt                        shift and go to state 25
+    while_stmt                     shift and go to state 26
+    for_stmt                       shift and go to state 27
+    writeln_stmt                   shift and go to state 28
+    readln_stmt                    shift and go to state 29
+    write_stmt                     shift and go to state 30
+    block_stmt                     shift and go to state 31
+    func_call                      shift and go to state 32
+    var_ref                        shift and go to state 33
+
+state 147
+
+    (74) factor -> LENGTH LPAREN expr RPAREN .
+
+    TIMES           reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    DIVIDE          reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    MOD             reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    PLUS            reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    MINUS           reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    EQ              reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    NE              reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    LT              reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    GT              reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    LE              reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    GE              reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    THEN            reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    AND             reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    OR              reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    DO              reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    END             reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    SEMICOLON       reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    ELSE            reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    COMMA           reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    RBRACKET        reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    TO              reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+    DOWNTO          reduce using rule 74 (factor -> LENGTH LPAREN expr RPAREN .)
+
+
+state 148
+
+    (45) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr TO . logic_expr DO stmt
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    logic_expr                     shift and go to state 155
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 149
+
+    (46) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr DOWNTO . logic_expr DO stmt
+    (56) logic_expr -> . logic_expr AND rel_expr
+    (57) logic_expr -> . logic_expr OR rel_expr
+    (58) logic_expr -> . NOT rel_expr
+    (59) logic_expr -> . rel_expr
+    (60) rel_expr -> . rel_expr EQ expr
+    (61) rel_expr -> . rel_expr NE expr
+    (62) rel_expr -> . rel_expr LT expr
+    (63) rel_expr -> . rel_expr GT expr
+    (64) rel_expr -> . rel_expr LE expr
+    (65) rel_expr -> . rel_expr GE expr
+    (66) rel_expr -> . expr
+    (67) expr -> . expr PLUS term
+    (68) expr -> . expr MINUS term
+    (69) expr -> . term
+    (70) term -> . term TIMES factor
+    (71) term -> . term DIVIDE factor
+    (72) term -> . term MOD factor
+    (73) term -> . factor
+    (74) factor -> . LENGTH LPAREN expr RPAREN
+    (75) factor -> . primary
+    (76) primary -> . NUMBER
+    (77) primary -> . STRING
+    (78) primary -> . BOOLEAN_LITERAL
+    (79) primary -> . var_ref
+    (80) primary -> . func_call
+    (81) primary -> . LPAREN logic_expr RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+
+    NOT             shift and go to state 51
+    LENGTH          shift and go to state 55
+    NUMBER          shift and go to state 58
+    STRING          shift and go to state 59
+    BOOLEAN_LITERAL shift and go to state 60
+    LPAREN          shift and go to state 56
+    IDENTIFIER      shift and go to state 63
+
+    logic_expr                     shift and go to state 156
+    rel_expr                       shift and go to state 50
+    expr                           shift and go to state 52
+    term                           shift and go to state 53
+    factor                         shift and go to state 54
+    primary                        shift and go to state 57
+    var_ref                        shift and go to state 61
+    func_call                      shift and go to state 62
+
+state 150
+
+    (53) expr_list -> expr_list COMMA logic_expr .
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    RPAREN          reduce using rule 53 (expr_list -> expr_list COMMA logic_expr .)
+    COMMA           reduce using rule 53 (expr_list -> expr_list COMMA logic_expr .)
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 151
+
+    (20) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN SEMICOLON block . SEMICOLON
+
+    SEMICOLON       shift and go to state 157
+
+
+state 152
+
+    (21) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON type . SEMICOLON block SEMICOLON
+
+    SEMICOLON       shift and go to state 158
+
+
+state 153
+
+    (14) array_type -> ARRAY LBRACKET NUMBER RANGE . NUMBER RBRACKET OF simple_type
+
+    NUMBER          shift and go to state 159
+
+
+state 154
+
+    (43) if_stmt -> IF logic_expr THEN stmt ELSE stmt .
+
+    END             reduce using rule 43 (if_stmt -> IF logic_expr THEN stmt ELSE stmt .)
+    SEMICOLON       reduce using rule 43 (if_stmt -> IF logic_expr THEN stmt ELSE stmt .)
+    ELSE            reduce using rule 43 (if_stmt -> IF logic_expr THEN stmt ELSE stmt .)
+
+
+state 155
+
+    (45) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr TO logic_expr . DO stmt
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    DO              shift and go to state 160
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 156
+
+    (46) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr . DO stmt
+    (56) logic_expr -> logic_expr . AND rel_expr
+    (57) logic_expr -> logic_expr . OR rel_expr
+
+    DO              shift and go to state 161
+    AND             shift and go to state 86
+    OR              shift and go to state 87
+
+
+state 157
+
+    (20) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN SEMICOLON block SEMICOLON .
+
+    FUNCTION        reduce using rule 20 (function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN SEMICOLON block SEMICOLON .)
+    VAR             reduce using rule 20 (function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN SEMICOLON block SEMICOLON .)
+    BEGIN           reduce using rule 20 (function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN SEMICOLON block SEMICOLON .)
+
+
+state 158
+
+    (21) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON type SEMICOLON . block SEMICOLON
+    (2) block -> . var_decls BEGIN stmt_list END
+    (3) var_decls -> . VAR var_decl_list
+    (4) var_decls -> . empty
+    (82) empty -> .
+
+    VAR             shift and go to state 11
+    BEGIN           reduce using rule 82 (empty -> .)
+
+    block                          shift and go to state 162
+    var_decls                      shift and go to state 9
+    empty                          shift and go to state 12
+
+state 159
+
+    (14) array_type -> ARRAY LBRACKET NUMBER RANGE NUMBER . RBRACKET OF simple_type
+
+    RBRACKET        shift and go to state 163
+
+
+state 160
+
+    (45) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO . stmt
+    (30) stmt -> . assign_stmt
+    (31) stmt -> . if_stmt
+    (32) stmt -> . while_stmt
+    (33) stmt -> . for_stmt
+    (34) stmt -> . writeln_stmt
+    (35) stmt -> . readln_stmt
+    (36) stmt -> . write_stmt
+    (37) stmt -> . block_stmt
+    (38) stmt -> . func_call
+    (39) assign_stmt -> . var_ref ASSIGN logic_expr
+    (42) if_stmt -> . IF logic_expr THEN stmt
+    (43) if_stmt -> . IF logic_expr THEN stmt ELSE stmt
+    (44) while_stmt -> . WHILE logic_expr DO stmt
+    (45) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+    (48) writeln_stmt -> . WRITELN LPAREN expr_list RPAREN
+    (49) writeln_stmt -> . WRITELN
+    (50) readln_stmt -> . READLN LPAREN var_ref RPAREN
+    (47) write_stmt -> . WRITE LPAREN expr_list RPAREN
+    (51) block_stmt -> . BEGIN stmt_list END
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+    WRITELN         shift and go to state 38
+    READLN          shift and go to state 39
+    WRITE           shift and go to state 40
+    BEGIN           shift and go to state 20
+    IDENTIFIER      shift and go to state 37
+
+    stmt                           shift and go to state 164
+    assign_stmt                    shift and go to state 24
+    if_stmt                        shift and go to state 25
+    while_stmt                     shift and go to state 26
+    for_stmt                       shift and go to state 27
+    writeln_stmt                   shift and go to state 28
+    readln_stmt                    shift and go to state 29
+    write_stmt                     shift and go to state 30
+    block_stmt                     shift and go to state 31
+    func_call                      shift and go to state 32
+    var_ref                        shift and go to state 33
+
+state 161
+
+    (46) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO . stmt
+    (30) stmt -> . assign_stmt
+    (31) stmt -> . if_stmt
+    (32) stmt -> . while_stmt
+    (33) stmt -> . for_stmt
+    (34) stmt -> . writeln_stmt
+    (35) stmt -> . readln_stmt
+    (36) stmt -> . write_stmt
+    (37) stmt -> . block_stmt
+    (38) stmt -> . func_call
+    (39) assign_stmt -> . var_ref ASSIGN logic_expr
+    (42) if_stmt -> . IF logic_expr THEN stmt
+    (43) if_stmt -> . IF logic_expr THEN stmt ELSE stmt
+    (44) while_stmt -> . WHILE logic_expr DO stmt
+    (45) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt
+    (46) for_stmt -> . FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt
+    (48) writeln_stmt -> . WRITELN LPAREN expr_list RPAREN
+    (49) writeln_stmt -> . WRITELN
+    (50) readln_stmt -> . READLN LPAREN var_ref RPAREN
+    (47) write_stmt -> . WRITE LPAREN expr_list RPAREN
+    (51) block_stmt -> . BEGIN stmt_list END
+    (52) func_call -> . IDENTIFIER LPAREN expr_list RPAREN
+    (40) var_ref -> . IDENTIFIER
+    (41) var_ref -> . IDENTIFIER LBRACKET logic_expr RBRACKET
+
+    IF              shift and go to state 34
+    WHILE           shift and go to state 35
+    FOR             shift and go to state 36
+    WRITELN         shift and go to state 38
+    READLN          shift and go to state 39
+    WRITE           shift and go to state 40
+    BEGIN           shift and go to state 20
+    IDENTIFIER      shift and go to state 37
+
+    stmt                           shift and go to state 165
+    assign_stmt                    shift and go to state 24
+    if_stmt                        shift and go to state 25
+    while_stmt                     shift and go to state 26
+    for_stmt                       shift and go to state 27
+    writeln_stmt                   shift and go to state 28
+    readln_stmt                    shift and go to state 29
+    write_stmt                     shift and go to state 30
+    block_stmt                     shift and go to state 31
+    func_call                      shift and go to state 32
+    var_ref                        shift and go to state 33
+
+state 162
+
+    (21) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON type SEMICOLON block . SEMICOLON
+
+    SEMICOLON       shift and go to state 166
+
+
+state 163
+
+    (14) array_type -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET . OF simple_type
+
+    OF              shift and go to state 167
+
+
+state 164
+
+    (45) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt .
+
+    END             reduce using rule 45 (for_stmt -> FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt .)
+    SEMICOLON       reduce using rule 45 (for_stmt -> FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt .)
+    ELSE            reduce using rule 45 (for_stmt -> FOR IDENTIFIER ASSIGN logic_expr TO logic_expr DO stmt .)
+
+
+state 165
+
+    (46) for_stmt -> FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt .
+
+    END             reduce using rule 46 (for_stmt -> FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt .)
+    SEMICOLON       reduce using rule 46 (for_stmt -> FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt .)
+    ELSE            reduce using rule 46 (for_stmt -> FOR IDENTIFIER ASSIGN logic_expr DOWNTO logic_expr DO stmt .)
+
+
+state 166
+
+    (21) function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON type SEMICOLON block SEMICOLON .
+
+    FUNCTION        reduce using rule 21 (function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON type SEMICOLON block SEMICOLON .)
+    VAR             reduce using rule 21 (function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON type SEMICOLON block SEMICOLON .)
+    BEGIN           reduce using rule 21 (function_decl -> FUNCTION IDENTIFIER LPAREN param_list RPAREN COLON type SEMICOLON block SEMICOLON .)
+
+
+state 167
+
+    (14) array_type -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF . simple_type
+    (15) simple_type -> . INTEGER
+    (16) simple_type -> . BOOLEAN
+    (17) simple_type -> . STRING_TYPE
+
+    INTEGER         shift and go to state 169
+    BOOLEAN         shift and go to state 170
+    STRING_TYPE     shift and go to state 171
+
+    simple_type                    shift and go to state 168
+
+state 168
+
+    (14) array_type -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF simple_type .
+
+    SEMICOLON       reduce using rule 14 (array_type -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF simple_type .)
+    RPAREN          reduce using rule 14 (array_type -> ARRAY LBRACKET NUMBER RANGE NUMBER RBRACKET OF simple_type .)
+
+
+state 169
+
+    (15) simple_type -> INTEGER .
+
+    SEMICOLON       reduce using rule 15 (simple_type -> INTEGER .)
+    RPAREN          reduce using rule 15 (simple_type -> INTEGER .)
+
+
+state 170
+
+    (16) simple_type -> BOOLEAN .
+
+    SEMICOLON       reduce using rule 16 (simple_type -> BOOLEAN .)
+    RPAREN          reduce using rule 16 (simple_type -> BOOLEAN .)
+
+
+state 171
+
+    (17) simple_type -> STRING_TYPE .
+
+    SEMICOLON       reduce using rule 17 (simple_type -> STRING_TYPE .)
+    RPAREN          reduce using rule 17 (simple_type -> STRING_TYPE .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 117 resolved as shift

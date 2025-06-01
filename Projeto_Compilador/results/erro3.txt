@@ -1,0 +1,1 @@
+Erro: Erro semântico: Operação '*' requer operandos do tipo integer, encontrado integer e string

@@ -1,0 +1,1 @@
+Erro: Erro semântico: Retorno da função 'TestFunc' deve ser integer, mas é string

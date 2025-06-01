@@ -1,0 +1,1 @@
+Erro: Erro semântico: Variável 'x' não declarada

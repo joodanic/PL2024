@@ -1,0 +1,1 @@
+Erro: Erro semântico: Atribuição de string a variável de tipo integer

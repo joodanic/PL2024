@@ -1,0 +1,68 @@
+PUSHI 0
+PUSHI 0
+PUSHI 0
+PUSHI 0
+START
+PUSHI 1
+NOT
+STOREG 0
+PUSHG 0
+JZ endif1
+PUSHS "Teste 1 Falhou"
+WRITES
+WRITELN
+JUMP label1
+endif1:
+PUSHS "Teste 1 Passou"
+WRITES
+WRITELN
+label1:
+PUSHG 0
+NOT
+STOREG 1
+PUSHG 1
+JZ endif2
+PUSHS "Teste 2 Passou"
+WRITES
+WRITELN
+JUMP label2
+endif2:
+PUSHS "Teste 2 Falhou"
+WRITES
+WRITELN
+label2:
+PUSHI 5
+STOREG 2
+PUSHI 5
+STOREG 3
+PUSHG 2
+PUSHG 3
+EQUAL
+NOT
+STOREG 0
+PUSHG 0
+JZ endif3
+PUSHS "Teste 3 Falhou"
+WRITES
+WRITELN
+JUMP label3
+endif3:
+PUSHS "Teste 3 Passou"
+WRITES
+WRITELN
+label3:
+PUSHI 0
+NOT
+STOREG 0
+PUSHG 0
+JZ endif4
+PUSHS "Teste 4 Passou"
+WRITES
+WRITELN
+JUMP label4
+endif4:
+PUSHS "Teste 4 Falhou"
+WRITES
+WRITELN
+label4:
+STOP

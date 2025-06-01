@@ -1,0 +1,1 @@
+Erro: Erro semântico: Índice -1 menor que o limite inferior 0 do array 'arr'

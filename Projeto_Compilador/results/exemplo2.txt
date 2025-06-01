@@ -1,0 +1,55 @@
+PUSHI 0
+PUSHI 0
+PUSHI 0
+PUSHI 0
+START
+PUSHS "Introduza o primeiro número: "
+WRITES
+READ
+ATOI
+STOREG 0
+PUSHS "Introduza o segundo número: "
+WRITES
+READ
+ATOI
+STOREG 1
+PUSHS "Introduza o terceiro número: "
+WRITES
+READ
+ATOI
+STOREG 2
+PUSHG 0
+PUSHG 1
+SUP
+JZ endif1
+PUSHG 0
+PUSHG 2
+SUP
+JZ endif2
+PUSHG 0
+STOREG 3
+JUMP label1
+endif2:
+PUSHG 2
+STOREG 3
+label1:
+JUMP label2
+endif1:
+PUSHG 1
+PUSHG 2
+SUP
+JZ endif3
+PUSHG 1
+STOREG 3
+JUMP label3
+endif3:
+PUSHG 2
+STOREG 3
+label3:
+label2:
+PUSHS "O maior é: "
+WRITES
+PUSHG 3
+WRITEI
+WRITELN
+STOP

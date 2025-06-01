@@ -1,0 +1,54 @@
+PUSHI 0
+PUSHI 0
+PUSHI 0
+START
+PUSHS "Introduza um número inteiro positivo:"
+WRITES
+WRITELN
+READ
+ATOI
+STOREG 0
+PUSHI 1
+STOREG 2
+PUSHI 2
+STOREG 1
+whilestart1:
+PUSHG 1
+PUSHG 0
+PUSHI 2
+DIV
+INFEQ
+PUSHG 2
+AND
+JZ whileend1
+PUSHG 0
+PUSHG 1
+MOD
+PUSHI 0
+EQUAL
+JZ endif1
+PUSHI 0
+STOREG 2
+endif1:
+PUSHG 1
+PUSHI 1
+ADD
+STOREG 1
+JUMP whilestart1
+whileend1:
+PUSHG 2
+JZ endif2
+PUSHG 0
+WRITEI
+PUSHS " é um número primo"
+WRITES
+WRITELN
+JUMP label1
+endif2:
+PUSHG 0
+WRITEI
+PUSHS " não é um número primo"
+WRITES
+WRITELN
+label1:
+STOP
