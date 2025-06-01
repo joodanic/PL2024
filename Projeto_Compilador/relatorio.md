@@ -194,7 +194,7 @@ A análise léxica foi implementada no ficheiro `PascalLexer.py` utilizando `ply
 
 - **Palavras reservadas**: Como `program`, `begin`, `end`, entre outras, definidas como funções `t_NOME` para cada palavra.
 - **Identificadores**: Sequências de letras e dígitos começando por uma letra (`[a-zA-Z][a-zA-Z0-9]*`).
-- **Números**: Inteiros representados por `\d+`, convertidos para valores inteiros.
+- **Números**: Inteiros representados por `-?\d+`, convertidos para valores inteiros.
 - **Strings**: Sequências entre aspas simples ou duplas (`"[^"]*"|'[^\']*\'`), com as aspas removidas.
 - **Operadores e símbolos**: Como `+`, `-`, `:=`, `=`, `<`, etc., definidos com expressões regulares.
 - **Comentários**: Ignorados usando a regra `\{.*?\}`.
